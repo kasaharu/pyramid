@@ -122,6 +122,41 @@
           }
         }
       }
+    },
+    "fullerene": {
+      "projectType": "library",
+      "root": "projects/fullerene",
+      "sourceRoot": "projects/fullerene/src",
+      "prefix": "fl",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/fullerene/tsconfig.lib.json",
+            "project": "projects/fullerene/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/fullerene/src/test.ts",
+            "tsConfig": "projects/fullerene/tsconfig.spec.json",
+            "karmaConfig": "projects/fullerene/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/fullerene/tsconfig.lib.json",
+              "projects/fullerene/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }},
   "defaultProject": "pyramid"
 }

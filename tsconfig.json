@@ -22,7 +22,15 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "fullerene": [
+        "dist/fullerene"
+      ],
+      "fullerene/*": [
+        "dist/fullerene/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
