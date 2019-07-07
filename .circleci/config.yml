@@ -66,7 +66,7 @@ jobs:
       - checkout
       - run: echo "Start unit test"
       - *restore_node_modules
-      - run: yarn test --watch false
+      - run: yarn test
       - store_artifacts:
           path: coverage
 
