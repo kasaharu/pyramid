@@ -6,8 +6,10 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "lint": "ng lint",
     "e2e": "ng e2e",
+    "fl:build": "ng build fullerene",
+    "fl:test": "ng test fullerene",
+    "lint": "ng lint",
     "stylelint": "stylelint './**/*.scss'",
     "prettier": "prettier --write './**/*.{ts,html,scss}'",
     "prettier:check": "prettier --check './**/*.{ts,html,scss}'"
