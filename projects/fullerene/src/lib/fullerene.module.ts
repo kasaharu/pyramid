@@ -3,8 +3,7 @@ import { FullereneComponent } from './fullerene.component';
 
 @NgModule({
   declarations: [FullereneComponent],
-  imports: [
-  ],
+  imports: [],
   exports: [FullereneComponent],
 })
-export class FullereneModule { }
+export class FullereneModule {}

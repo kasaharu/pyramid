@@ -8,9 +8,8 @@ describe('FullereneComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FullereneComponent ],
-    })
-    .compileComponents();
+      declarations: [FullereneComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
