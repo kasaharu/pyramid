@@ -141,7 +141,10 @@
           "options": {
             "main": "projects/fullerene/src/test.ts",
             "tsConfig": "projects/fullerene/tsconfig.spec.json",
-            "karmaConfig": "projects/fullerene/karma.conf.js"
+            "karmaConfig": "projects/fullerene/karma.conf.js",
+            "watch": false,
+            "codeCoverage": true,
+            "progress": false
           }
         },
         "lint": {
