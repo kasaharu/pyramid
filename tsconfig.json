@@ -10,6 +10,11 @@
     "module": "esnext",
     "moduleResolution": "node",
     "importHelpers": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
     "target": "es2015",
     "typeRoots": [
       "node_modules/@types"
