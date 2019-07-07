@@ -52,6 +52,25 @@ jobs:
       - *restore_node_modules
       - run: yarn prettier:check
 
+  fl-build:
+    executor: ci-executor
+    steps:
+      - checkout
+      - run: echo "Start build of fullerene"
+      - *restore_node_modules
+      - run: yarn fl:build
+
+  fl-test:
+    executor: ci-executor
+    steps:
+      - checkout
+      - run: echo "Start unit test of fullerene "
+      - *restore_node_modules
+      - run: yarn fl:test
+      - store_artifacts:
+          path: coverage
+
+
   build:
     executor: ci-executor
     steps:
@@ -92,18 +111,25 @@ workflows:
       - check-formatted:
           requires:
             - install-packages
+      - fl-build:
+          requires:
+            - lint
+            - stylelint
+            - check-formatted
+      - fl-test:
+          requires:
+            - lint
+            - stylelint
+            - check-formatted
       - build:
           requires:
-            - lint
-            - stylelint
-            - check-formatted
+            - fl-build
+            - fl-test
       - test:
           requires:
-            - lint
-            - stylelint
-            - check-formatted
+            - fl-build
+            - fl-test
       - e2e:
           requires:
-            - lint
-            - stylelint
-            - check-formatted
+            - fl-build
+            - fl-test
