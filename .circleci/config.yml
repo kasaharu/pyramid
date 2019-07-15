@@ -70,6 +70,32 @@ jobs:
       - store_artifacts:
           path: coverage
 
+  canaria-build:
+    executor: ci-executor
+    steps:
+      - checkout
+      - run: echo "Start build of canaria"
+      - *restore_node_modules
+      - run: yarn canaria:build
+
+  canaria-test:
+    executor: ci-executor
+    steps:
+      - checkout
+      - run: echo "Start unit test of canaria"
+      - *restore_node_modules
+      - run: yarn canaria:test
+      - store_artifacts:
+          path: coverage
+
+  canaria-e2e:
+    executor: ci-executor
+    steps:
+      - checkout
+      - run: echo "Start e2e test of canaria"
+      - *restore_node_modules
+      - run: yarn canaria:e2e
+
 workflows:
   version: 2
   build_and_test:
@@ -94,3 +120,15 @@ workflows:
             - lint
             - stylelint
             - check-formatted
+      - canaria-build:
+          requires:
+            - fl-build
+            - fl-test
+      - canaria-test:
+          requires:
+            - fl-build
+            - fl-test
+      - canaria-e2e:
+          requires:
+            - fl-build
+            - fl-test
