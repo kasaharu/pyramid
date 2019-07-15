@@ -70,33 +70,6 @@ jobs:
       - store_artifacts:
           path: coverage
 
-
-  build:
-    executor: ci-executor
-    steps:
-      - checkout
-      - run: echo "Start build"
-      - *restore_node_modules
-      - run: yarn build
-
-  test:
-    executor: ci-executor
-    steps:
-      - checkout
-      - run: echo "Start unit test"
-      - *restore_node_modules
-      - run: yarn test
-      - store_artifacts:
-          path: coverage
-
-  e2e:
-    executor: ci-executor
-    steps:
-      - checkout
-      - run: echo "Start e2e test"
-      - *restore_node_modules
-      - run: yarn e2e
-
 workflows:
   version: 2
   build_and_test:
@@ -121,15 +94,3 @@ workflows:
             - lint
             - stylelint
             - check-formatted
-      - build:
-          requires:
-            - fl-build
-            - fl-test
-      - test:
-          requires:
-            - fl-build
-            - fl-test
-      - e2e:
-          requires:
-            - fl-build
-            - fl-test
