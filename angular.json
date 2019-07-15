@@ -121,6 +121,9 @@
             "polyfills": "projects/canaria/src/polyfills.ts",
             "tsConfig": "projects/canaria/tsconfig.spec.json",
             "karmaConfig": "projects/canaria/karma.conf.js",
+            "watch": false,
+            "codeCoverage": true,
+            "progress": false,
             "assets": [
               "projects/canaria/src/favicon.ico",
               "projects/canaria/src/assets"
