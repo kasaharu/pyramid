@@ -78,19 +78,19 @@ workflows:
       - lint:
           requires:
             - install-packages
-      # - stylelint:
-      #     requires:
-      #       - install-packages
+      - stylelint:
+          requires:
+            - install-packages
       - check-formatted:
           requires:
             - install-packages
       - fl-build:
           requires:
             - lint
-            # - stylelint
+            - stylelint
             - check-formatted
       - fl-test:
           requires:
             - lint
-            # - stylelint
+            - stylelint
             - check-formatted
