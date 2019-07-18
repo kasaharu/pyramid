@@ -66,6 +66,7 @@
               "projects/canaria/src/assets"
             ],
             "styles": [
+              "projects/fullerene/src/assets/styles/reset.css",
               "projects/canaria/src/styles.scss"
             ],
             "scripts": []
