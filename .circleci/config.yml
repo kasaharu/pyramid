@@ -76,6 +76,7 @@ jobs:
       - checkout
       - run: echo "Start build of canaria"
       - *restore_node_modules
+      - run: yarn canaria:prebuild
       - run: yarn canaria:build
 
   canaria-test:
@@ -84,6 +85,7 @@ jobs:
       - checkout
       - run: echo "Start unit test of canaria"
       - *restore_node_modules
+      - run: yarn canaria:prebuild
       - run: yarn canaria:test
       - store_artifacts:
           path: coverage
@@ -94,6 +96,7 @@ jobs:
       - checkout
       - run: echo "Start e2e test of canaria"
       - *restore_node_modules
+      - run: yarn canaria:prebuild
       - run: yarn canaria:e2e
 
 workflows:
