@@ -10,6 +10,7 @@
     "canaria:build": "ng build canaria",
     "canaria:test": "ng test canaria",
     "canaria:e2e": "ng e2e canaria",
+    "canaria:deploy": "ng run canaria:deploy",
     "lint": "ng lint",
     "stylelint": "stylelint './**/*.scss'",
     "prettier": "prettier --write './**/*.{ts,html,scss}'",
