@@ -5,6 +5,7 @@
     "ng": "ng",
     "fl:build": "ng build fullerene",
     "fl:test": "ng test fullerene",
+    "canaria:prebuild": "tsc --lib es6 projects/canaria/scripts/prebuild.ts && node projects/canaria/scripts/prebuild.js && node projects/canaria/scripts/prebuild.js prod",
     "canaria:start": "ng serve canaria",
     "canaria:build": "ng build canaria",
     "canaria:test": "ng test canaria",
