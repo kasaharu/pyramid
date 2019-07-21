@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "canaria-app"
+  },
+  "targets": {
+    "canaria-app": {
+      "hosting": {
+        "canaria": [
+          "canaria-app"
+        ]
+      }
+    }
   }
 }
