@@ -47,3 +47,4 @@ Thumbs.db
 
 # project
 projects/canaria/scripts/prebuild.js
+.firebase/
