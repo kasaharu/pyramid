@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "util:build": "ng build utilities",
+    "util:test": "ng test utilities",
     "fl:build": "ng build fullerene",
     "fl:test": "ng test fullerene",
     "canaria:prebuild": "tsc --lib es6 projects/canaria/scripts/prebuild.ts && node projects/canaria/scripts/prebuild.js && node projects/canaria/scripts/prebuild.js prod",
