@@ -29,6 +29,12 @@
       ],
       "fullerene/*": [
         "dist/fullerene/*"
+      ],
+      "utilities": [
+        "dist/utilities"
+      ],
+      "utilities/*": [
+        "dist/utilities/*"
       ]
     }
   },
