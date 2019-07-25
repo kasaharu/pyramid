@@ -3,8 +3,7 @@ import { UtilitiesComponent } from './utilities.component';
 
 @NgModule({
   declarations: [UtilitiesComponent],
-  imports: [
-  ],
+  imports: [],
   exports: [UtilitiesComponent],
 })
-export class UtilitiesModule { }
+export class UtilitiesModule {}
