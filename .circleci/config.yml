@@ -52,6 +52,24 @@ jobs:
       - *restore_node_modules
       - run: yarn prettier:check
 
+  util-build:
+    executor: ci-executor
+    steps:
+      - checkout
+      - run: echo "Start build of utilities"
+      - *restore_node_modules
+      - run: yarn util:build
+
+  util-test:
+    executor: ci-executor
+    steps:
+      - checkout
+      - run: echo "Start unit test of utilities"
+      - *restore_node_modules
+      - run: yarn util:test
+      - store_artifacts:
+          path: coverage
+
   fl-build:
     executor: ci-executor
     steps:
@@ -64,7 +82,7 @@ jobs:
     executor: ci-executor
     steps:
       - checkout
-      - run: echo "Start unit test of fullerene "
+      - run: echo "Start unit test of fullerene"
       - *restore_node_modules
       - run: yarn fl:test
       - store_artifacts:
@@ -113,16 +131,24 @@ workflows:
       - check-formatted:
           requires:
             - install-packages
+      - util-build:
+          requires:
+            - lint
+            - stylelint
+            - check-formatted
+      - util-test:
+          requires:
+            - lint
+            - stylelint
+            - check-formatted
       - fl-build:
           requires:
-            - lint
-            - stylelint
-            - check-formatted
+            - util-build
+            - util-test
       - fl-test:
           requires:
-            - lint
-            - stylelint
-            - check-formatted
+            - util-build
+            - util-test
       - canaria-build:
           requires:
             - fl-build
