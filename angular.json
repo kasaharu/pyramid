@@ -184,7 +184,10 @@
           "options": {
             "main": "projects/utilities/src/test.ts",
             "tsConfig": "projects/utilities/tsconfig.spec.json",
-            "karmaConfig": "projects/utilities/karma.conf.js"
+            "karmaConfig": "projects/utilities/karma.conf.js",
+            "watch": false,
+            "codeCoverage": true,
+            "progress": false
           }
         },
         "lint": {
