@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
+import { Authenticator } from 'utilities';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +7,13 @@ import { auth } from 'firebase/app';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  constructor(public afAuth: AngularFireAuth) {}
+  constructor(private authenticator: Authenticator) {}
+  user$ = this.authenticator.loggedInUser$;
+
   login() {
-    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+    this.authenticator.login();
   }
   logout() {
-    this.afAuth.auth.signOut();
+    this.authenticator.logout();
   }
 }
