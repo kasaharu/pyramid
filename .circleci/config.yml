@@ -18,6 +18,30 @@ references:
       keys:
         - *npm_cache_key
 
+  util_build_cache_key: &util_build_cache_key
+    pyramid-utilities-dist-{{ .Branch }}-{{ .Revision }}
+  save_util_dist: &save_util_dist
+    save_cache:
+      key: *util_build_cache_key
+      paths:
+        - dist/utilities
+  restore_util_dist: &restore_util_dist
+    restore_cache:
+      keys:
+        - *util_build_cache_key
+
+  fl_build_cache_key: &fl_build_cache_key
+    pyramid-fullerene-dist-{{ .Branch }}-{{ .Revision }}
+  save_fl_dist: &save_fl_dist
+    save_cache:
+      key: *fl_build_cache_key
+      paths:
+        - dist/fullerene
+  restore_fl_dist: &restore_fl_dist
+    restore_cache:
+      keys:
+        - *fl_build_cache_key
+
 jobs:
   install-packages:
     executor: ci-executor
@@ -59,6 +83,7 @@ jobs:
       - run: echo "Start build of utilities"
       - *restore_node_modules
       - run: yarn util:build
+      - *save_util_dist
 
   util-test:
     executor: ci-executor
@@ -76,7 +101,9 @@ jobs:
       - checkout
       - run: echo "Start build of fullerene"
       - *restore_node_modules
+      - *restore_util_dist
       - run: yarn fl:build
+      - *save_fl_dist
 
   fl-test:
     executor: ci-executor
@@ -84,6 +111,7 @@ jobs:
       - checkout
       - run: echo "Start unit test of fullerene"
       - *restore_node_modules
+      - *restore_util_dist
       - run: yarn fl:test
       - store_artifacts:
           path: coverage
@@ -94,6 +122,8 @@ jobs:
       - checkout
       - run: echo "Start build of canaria"
       - *restore_node_modules
+      - *restore_util_dist
+      - *restore_fl_dist
       - run: yarn canaria:prebuild
       - run: yarn canaria:build
 
@@ -103,6 +133,8 @@ jobs:
       - checkout
       - run: echo "Start unit test of canaria"
       - *restore_node_modules
+      - *restore_util_dist
+      - *restore_fl_dist
       - run: yarn canaria:prebuild
       - run: yarn canaria:test
       - store_artifacts:
@@ -114,6 +146,8 @@ jobs:
       - checkout
       - run: echo "Start e2e test of canaria"
       - *restore_node_modules
+      - *restore_util_dist
+      - *restore_fl_dist
       - run: yarn canaria:prebuild
       - run: yarn canaria:e2e
 
