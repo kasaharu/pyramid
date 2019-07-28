@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Authenticator } from 'utilities';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'canaria';
+  constructor(private authenticator: Authenticator) {}
+  user$ = this.authenticator.loggedInUser$;
+
+  login() {
+    this.authenticator.login();
+  }
+  logout() {
+    this.authenticator.logout();
+  }
 }

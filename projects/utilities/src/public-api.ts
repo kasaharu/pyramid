@@ -5,3 +5,4 @@
 export * from './lib/utilities.service';
 export * from './lib/utilities.component';
 export * from './lib/utilities.module';
+export * from './lib/services/authenticator';
