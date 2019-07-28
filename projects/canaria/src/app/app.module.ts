@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { FullereneModule } from 'fullerene';
 import { UtilitiesModule } from 'utilities';
@@ -16,6 +17,7 @@ import { LoginComponent } from './pages/login/login.component';
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    AngularFireAuthGuardModule,
     UtilitiesModule,
     FullereneModule,
     AppRoutingModule,
