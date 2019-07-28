@@ -1,3 +1,5 @@
+<fl-header [appTitle]="appTitle"></fl-header>
+
 <div *ngIf="user$ | async as user; else showLogin">
   <h1>Hello {{ user.displayName }}!</h1>
   <button (click)="logout()">Logout</button>

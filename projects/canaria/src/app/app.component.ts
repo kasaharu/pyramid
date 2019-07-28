@@ -8,6 +8,7 @@ import { Authenticator } from 'utilities';
 })
 export class AppComponent {
   constructor(private authenticator: Authenticator) {}
+  readonly appTitle = 'Canaria';
   user$ = this.authenticator.loggedInUser$;
 
   login() {
