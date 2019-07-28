@@ -5,6 +5,6 @@ import { FullereneComponent } from './fullerene.component';
 @NgModule({
   declarations: [FullereneComponent, HeaderComponent],
   imports: [],
-  exports: [FullereneComponent],
+  exports: [FullereneComponent, HeaderComponent],
 })
 export class FullereneModule {}
