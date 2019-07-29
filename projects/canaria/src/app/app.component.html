@@ -1,9 +1,5 @@
-<div *ngIf="user$ | async as user; else showLogin">
-  <h1>Hello {{ user.displayName }}!</h1>
-  <button (click)="logout()">Logout</button>
-</div>
-<ng-template #showLogin>
-  <p>Please login.</p>
-  <button (click)="login()">Login with Google</button>
-</ng-template>
-<router-outlet></router-outlet>
+<fl-header [appTitle]="appTitle"></fl-header>
+
+<main class="main">
+  <router-outlet></router-outlet>
+</main>

@@ -5,6 +5,11 @@
   "projects": {
     "fullerene": {
       "projectType": "library",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "projects/fullerene",
       "sourceRoot": "projects/fullerene/src",
       "prefix": "fl",

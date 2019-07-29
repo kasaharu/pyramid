@@ -1,3 +1,6 @@
 dist/
 coverage/
 node_modules/
+
+angular.json
+tsconfig.json
