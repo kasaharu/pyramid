@@ -8,7 +8,7 @@ import { UtilitiesModule } from 'utilities';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TaskItemComponent } from './presenters/task-item/task-item.component';
+import { TaskItemComponent } from './components/presenters/task-item/task-item.component';
 import { TaskListComponent } from './containers/task-list/task-list.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
