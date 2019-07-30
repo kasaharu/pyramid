@@ -1,1 +1,1 @@
-export interface RootStore {}
+export interface Store {}
