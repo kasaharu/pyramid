@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Task } from '../../domain/models';
+import { Task } from '../../../domain/models';
 
 @Component({
   selector: 'app-task-list',
