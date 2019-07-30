@@ -8,11 +8,11 @@ import { UtilitiesModule } from 'utilities';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HomeComponent } from './components/containers/pages/home/home.component';
+import { LoginComponent } from './components/containers/pages/login/login.component';
+import { TasksComponent } from './components/containers/pages/tasks/tasks.component';
 import { TaskListComponent } from './components/containers/task-list/task-list.component';
 import { TaskItemComponent } from './components/presenters/task-item/task-item.component';
-import { HomeComponent } from './pages/home/home.component';
-import { LoginComponent } from './pages/login/login.component';
-import { TasksComponent } from './pages/tasks/tasks.component';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, LoginComponent, TasksComponent, TaskListComponent, TaskItemComponent],

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { canActivate, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { LoginComponent } from './pages/login/login.component';
-import { TasksComponent } from './pages/tasks/tasks.component';
+import { HomeComponent } from './components/containers/pages/home/home.component';
+import { LoginComponent } from './components/containers/pages/login/login.component';
+import { TasksComponent } from './components/containers/pages/tasks/tasks.component';
 
 const redirectLoggedInToHome = redirectLoggedInTo(['home']);
 const redirectUnauthorizedToLogin = redirectUnauthorizedTo(['login']);
