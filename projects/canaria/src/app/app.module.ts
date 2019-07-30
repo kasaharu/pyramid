@@ -13,6 +13,7 @@ import { LoginComponent } from './components/containers/pages/login/login.compon
 import { TasksComponent } from './components/containers/pages/tasks/tasks.component';
 import { TaskListComponent } from './components/containers/task-list/task-list.component';
 import { TaskItemComponent } from './components/presenters/task-item/task-item.component';
+import { RootStoreModule } from './root-store/root-store.module';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, LoginComponent, TasksComponent, TaskListComponent, TaskItemComponent],
@@ -24,6 +25,7 @@ import { TaskItemComponent } from './components/presenters/task-item/task-item.c
     UtilitiesModule,
     FullereneModule,
     AppRoutingModule,
+    RootStoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
