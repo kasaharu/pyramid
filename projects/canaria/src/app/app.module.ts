@@ -27,7 +27,7 @@ import { RootStoreModule } from './store/root-store.module';
     FullereneModule,
     AppRoutingModule,
     RootStoreModule,
-    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent],

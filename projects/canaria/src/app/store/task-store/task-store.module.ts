@@ -5,4 +5,4 @@ import { NgModule } from '@angular/core';
   declarations: [],
   imports: [CommonModule],
 })
-export class TodoStoreModule {}
+export class TaskStoreModule {}
