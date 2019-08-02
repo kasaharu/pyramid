@@ -8,9 +8,8 @@ describe('TaskFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TaskFormComponent ],
-    })
-    .compileComponents();
+      declarations: [TaskFormComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
