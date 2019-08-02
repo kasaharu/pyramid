@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-task-form',
@@ -6,7 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./task-form.component.scss'],
 })
 export class TaskFormComponent implements OnInit {
-  constructor() {}
+  constructor(private fb: FormBuilder) {}
+
+  taskForm = this.fb.group({
+    title: ['', Validators.required],
+    isCompleted: [false],
+  });
 
   ngOnInit() {}
+
+  onSubmit() {
+    console.log(this.taskForm.value);
+  }
 }

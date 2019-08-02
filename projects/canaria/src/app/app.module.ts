@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { FullereneModule } from 'fullerene';
@@ -29,6 +30,7 @@ import { RootStoreModule } from './store/root-store.module';
     AppRoutingModule,
     RootStoreModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
