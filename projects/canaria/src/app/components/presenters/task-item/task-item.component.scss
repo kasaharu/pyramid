@@ -1,0 +1,19 @@
+.task-item {
+  width: 100%;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.item-id {
+  flex-basis: 20%;
+}
+
+.item-title {
+  flex-basis: 80%;
+}
+
+.is-completed {
+  text-decoration: line-through;
+}
