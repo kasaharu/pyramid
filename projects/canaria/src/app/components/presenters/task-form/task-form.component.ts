@@ -11,6 +11,7 @@ export class TaskFormComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
   @Output()
   requestCreateTask = new EventEmitter<FormedTask>();
+  readonly placeholderText = 'task のタイトルを入力';
 
   taskForm = this.fb.group({
     title: ['', Validators.required],

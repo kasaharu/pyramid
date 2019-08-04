@@ -1,9 +1,4 @@
-<p>task-form works!</p>
-
 <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
-  <label for="">
-    Title:
-    <input type="text" formControlName="title" />
-  </label>
-  <button type="submit">送信</button>
+  <input class="input-title" type="text" formControlName="title" [placeholder]="placeholderText" />
+  <button flButton type="submit" [color]="'primary'" [disabled]="taskForm.invalid">作成</button>
 </form>

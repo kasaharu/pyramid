@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TaskFormComponent } from './task-form.component';
@@ -10,6 +11,7 @@ describe('TaskFormComponent', () => {
     TestBed.configureTestingModule({
       declarations: [TaskFormComponent],
       imports: [ReactiveFormsModule],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   }));
 
