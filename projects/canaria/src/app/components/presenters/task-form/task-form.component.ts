@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Task } from '../../../domain/models';
 
 @Component({
   selector: 'app-task-form',
@@ -8,6 +9,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class TaskFormComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
+  @Output()
+  requestCreateTask = new EventEmitter<Partial<Task>>();
 
   taskForm = this.fb.group({
     title: ['', Validators.required],
@@ -17,6 +20,6 @@ export class TaskFormComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit() {
-    console.log(this.taskForm.value);
+    this.requestCreateTask.emit(this.taskForm.value);
   }
 }

@@ -18,4 +18,8 @@ export class TaskListComponent implements OnInit {
       { id: 3, title: 'task 3', isCompleted: false },
     ]);
   }
+
+  createTask(task: Partial<Task>) {
+    console.log(task);
+  }
 }

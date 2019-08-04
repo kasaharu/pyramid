@@ -22,4 +22,13 @@ describe('TaskFormComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('call onSubmit', () => {
+    spyOn(component.requestCreateTask, 'emit');
+    const formParams = { title: '', isCompleted: false };
+    component.taskForm.setValue(formParams);
+    component.onSubmit();
+
+    expect(component.requestCreateTask.emit).toHaveBeenCalledWith(formParams);
+  });
 });
