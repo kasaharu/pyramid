@@ -2,14 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { FormedTask, Task } from '../../../domain/models';
 
+import { TaskListUsecase } from '../../../usecases/task-list.usecase';
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.scss'],
 })
 export class TaskListComponent implements OnInit {
+  constructor(private usecase: TaskListUsecase) {}
   taskList$: Observable<Task[] | null> = of(null);
-  constructor() {}
 
   ngOnInit() {
     this.taskList$ = of([
@@ -20,6 +21,6 @@ export class TaskListComponent implements OnInit {
   }
 
   createTask(task: FormedTask) {
-    console.log(task);
+    this.usecase.addTask(task);
   }
 }
