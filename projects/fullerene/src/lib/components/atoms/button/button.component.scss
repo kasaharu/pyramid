@@ -1,6 +1,6 @@
 :host {
   display: inline-block;
-  padding: 0px 16px;
+  padding: 0 16px;
   height: 36px;
   font-size: 1rem;
   border-radius: 4px;
@@ -8,11 +8,11 @@
 
   &.primary {
     background-color: #6200ee;
-    color: #ffffff;
+    color: #fff;
   }
 
   &:disabled {
-    background-color: #eeeeee;
+    background-color: #eee;
     color: #9e9e9e;
     cursor: not-allowed;
     pointer-events: none;
