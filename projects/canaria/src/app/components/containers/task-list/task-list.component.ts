@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Task } from '../../../domain/models';
+import { FormedTask, Task } from '../../../domain/models';
 
 @Component({
   selector: 'app-task-list',
@@ -19,7 +19,7 @@ export class TaskListComponent implements OnInit {
     ]);
   }
 
-  createTask(task: Partial<Task>) {
+  createTask(task: FormedTask) {
     console.log(task);
   }
 }
