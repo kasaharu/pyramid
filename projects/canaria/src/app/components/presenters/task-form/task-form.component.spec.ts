@@ -30,5 +30,6 @@ describe('TaskFormComponent', () => {
     component.onSubmit();
 
     expect(component.requestCreateTask.emit).toHaveBeenCalledWith(formParams);
+    expect(component.taskForm.value).toEqual({ title: null, isCompleted: null });
   });
 });

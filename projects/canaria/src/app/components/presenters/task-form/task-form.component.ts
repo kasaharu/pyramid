@@ -21,5 +21,6 @@ export class TaskFormComponent implements OnInit {
 
   onSubmit() {
     this.requestCreateTask.emit(this.taskForm.value);
+    this.taskForm.reset();
   }
 }
