@@ -3,3 +3,8 @@ export interface Task {
   title: string;
   isCompleted: boolean;
 }
+
+export interface FormedTask {
+  title: string;
+  isCompleted: boolean;
+}

@@ -1,3 +1,4 @@
+<app-task-form (requestCreateTask)="createTask($event)"></app-task-form>
 <ng-container *ngIf="taskList$ | async as taskList">
   <ng-container *ngFor="let task of taskList">
     <app-task-item [task]="task"></app-task-item>

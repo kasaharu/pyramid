@@ -1,0 +1,4 @@
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+  <input class="input-title" type="text" formControlName="title" [placeholder]="placeholderText" />
+  <button flButton type="submit" [color]="'primary'" [disabled]="taskForm.invalid">作成</button>
+</form>
