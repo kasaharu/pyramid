@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class BrowserApiService {
-
-  constructor() { }
+export class BrowserApiInfrastructure {
+  constructor() {}
 }
