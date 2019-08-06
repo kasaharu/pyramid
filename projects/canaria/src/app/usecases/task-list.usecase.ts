@@ -9,7 +9,7 @@ import { TaskStoreActions } from '../store/task-store';
 export class TaskListUsecase {
   constructor(private store$: Store<{}>) {}
 
-  addTask(taskWithoutId: FormedTask) {
+  createTask(taskWithoutId: FormedTask) {
     const task: Task = { ...taskWithoutId, id: 1 };
     this.store$.dispatch(TaskStoreActions.save(task));
   }

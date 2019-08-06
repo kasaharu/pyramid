@@ -31,7 +31,7 @@ describe('TaskListUsecase', () => {
 
     const actions: Array<any> = [];
     store$.scannedActions$.pipe(skip(1)).subscribe((action) => actions.push(action));
-    usecase.addTask(formedTask);
+    usecase.createTask(formedTask);
     expect(actions).toEqual(expected);
   });
 });
