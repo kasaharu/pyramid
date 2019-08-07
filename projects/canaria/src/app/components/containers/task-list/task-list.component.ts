@@ -16,6 +16,6 @@ export class TaskListComponent implements OnInit {
   ngOnInit() {}
 
   createTask(task: FormedTask) {
-    this.usecase.addTask(task);
+    this.usecase.createTask(task);
   }
 }

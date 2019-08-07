@@ -11,7 +11,7 @@ class MockTaskListQuery {
 }
 
 class MockTaskListUsecase {
-  addTask() {}
+  createTask() {}
 }
 
 describe('TaskListComponent', () => {
@@ -40,10 +40,10 @@ describe('TaskListComponent', () => {
   });
 
   it('call createTask()', () => {
-    spyOn(usecase, 'addTask');
+    spyOn(usecase, 'createTask');
     const formedTask: FormedTask = { title: 'test', isCompleted: false };
     component.createTask(formedTask);
 
-    expect(usecase.addTask).toHaveBeenCalledWith(formedTask);
+    expect(usecase.createTask).toHaveBeenCalledWith(formedTask);
   });
 });
