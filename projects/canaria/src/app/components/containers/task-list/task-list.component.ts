@@ -11,9 +11,11 @@ import { TaskListUsecase } from '../../../usecases/task-list.usecase';
 })
 export class TaskListComponent implements OnInit {
   constructor(private query: TaskListQuery, private usecase: TaskListUsecase) {}
-  taskList$: Observable<Task[] | null> = this.query.taskList$;
+  taskList$: Observable<Task[]> = this.query.taskList$;
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.usecase.initialize();
+  }
 
   createTask(task: FormedTask) {
     this.usecase.createTask(task);

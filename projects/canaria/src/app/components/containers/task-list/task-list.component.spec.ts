@@ -11,6 +11,7 @@ class MockTaskListQuery {
 }
 
 class MockTaskListUsecase {
+  initialize() {}
   createTask() {}
 }
 
@@ -37,6 +38,13 @@ describe('TaskListComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('call ngOnInit()', () => {
+    spyOn(usecase, 'initialize');
+    component.ngOnInit();
+
+    expect(usecase.initialize).toHaveBeenCalled();
   });
 
   it('call createTask()', () => {
