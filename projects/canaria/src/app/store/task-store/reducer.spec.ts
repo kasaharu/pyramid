@@ -4,11 +4,11 @@ import { reducer } from './reducer';
 import { initialState, State } from './state';
 
 describe('TaskStore reducer spec', () => {
-  it('save action', () => {
+  it('create action', () => {
     const additionalTask: Task = { id: 1, title: 'test', isCompleted: false };
-    const saveAction = Actions.save(additionalTask);
+    const createAction = Actions.create(additionalTask);
     const expected: State = { taskList: [additionalTask] };
 
-    expect(reducer(initialState, saveAction)).toEqual(expected);
+    expect(reducer(initialState, createAction)).toEqual(expected);
   });
 });

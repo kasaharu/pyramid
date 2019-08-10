@@ -11,6 +11,6 @@ export class TaskListUsecase {
 
   createTask(taskWithoutId: FormedTask) {
     const task: Task = { ...taskWithoutId, id: 1 };
-    this.store$.dispatch(TaskStoreActions.save(task));
+    this.store$.dispatch(TaskStoreActions.create(task));
   }
 }

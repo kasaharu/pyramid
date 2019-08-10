@@ -26,8 +26,8 @@ describe('TaskListUsecase', () => {
   it('call addTask()', () => {
     const formedTask: FormedTask = { title: 'test', isCompleted: false };
     const task: Task = { ...formedTask, id: 1 };
-    const saveAction = TaskStoreActions.save(task);
-    const expected: Array<any> = [saveAction];
+    const createAction = TaskStoreActions.create(task);
+    const expected: Array<any> = [createAction];
 
     const actions: Array<any> = [];
     store$.scannedActions$.pipe(skip(1)).subscribe((action) => actions.push(action));
