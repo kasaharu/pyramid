@@ -32,7 +32,7 @@ describe('TaskListUsecase', () => {
   });
 
   it('call initialize', async () => {
-    const taskList: Task[] = [{ id: 1, title: 'test', isCompleted: false }];
+    const taskList: Task[] = [{ id: '1', title: 'test', isCompleted: false }];
     spyOn(dbAdapter, 'fetchCollection').and.returnValue(of(taskList));
 
     const saveAction = TaskStoreActions.save(taskList);
