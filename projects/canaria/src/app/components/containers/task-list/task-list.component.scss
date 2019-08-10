@@ -1,0 +1,27 @@
+.task-header {
+  width: 100%;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  margin-top: 24px;
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
+  background-color: #78909c;
+  color: #eceff1;
+}
+
+.item-blank {
+  flex-basis: 5%;
+}
+
+.item-title {
+  flex-basis: 80%;
+}
+
+.item-status {
+  flex-basis: 15%;
+}
+
+.is-completed {
+  text-decoration: line-through;
+}

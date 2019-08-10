@@ -22,4 +22,18 @@ describe('TaskItemComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('get taskStatusText', () => {
+    it('task is completed', () => {
+      const task = { ...component.task, isCompleted: true };
+      component.task = task;
+      expect(component.taskStatusText).toBe('完了');
+    });
+
+    it('task is NOT completed', () => {
+      const task = { ...component.task, isCompleted: false };
+      component.task = task;
+      expect(component.taskStatusText).toBe('新規');
+    });
+  });
 });

@@ -11,5 +11,9 @@ export class TaskItemComponent implements OnInit {
   @Input()
   task: Task;
 
+  get taskStatusText() {
+    return this.task.isCompleted ? '完了' : '新規';
+  }
+
   ngOnInit() {}
 }
