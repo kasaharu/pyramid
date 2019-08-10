@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { FormedTask, Task } from '../../../domain/models';
+import { Task } from '../../../domain/models';
 import { TaskListQuery } from '../../../queries/task-list.query';
 import { TaskListUsecase } from '../../../usecases/task-list.usecase';
 
@@ -17,7 +17,7 @@ export class TaskListComponent implements OnInit {
     this.usecase.initialize();
   }
 
-  createTask(task: FormedTask) {
+  createTask(task: Task) {
     this.usecase.createTask(task);
   }
 }

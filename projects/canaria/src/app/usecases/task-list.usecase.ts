@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
-import { FormedTask, Task } from '../domain/models';
+import { Task } from '../domain/models';
 import { DatabaseAdapter } from '../infrastructures/database-adapter';
 import { TaskStoreActions } from '../store/task-store';
 

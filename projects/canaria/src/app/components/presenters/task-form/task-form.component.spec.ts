@@ -27,11 +27,11 @@ describe('TaskFormComponent', () => {
 
   it('call onSubmit', () => {
     spyOn(component.requestCreateTask, 'emit');
-    const formParams = { title: '', isCompleted: false };
+    const formParams = { id: '', title: '', isCompleted: false };
     component.taskForm.setValue(formParams);
     component.onSubmit();
 
     expect(component.requestCreateTask.emit).toHaveBeenCalledWith(formParams);
-    expect(component.taskForm.value).toEqual({ title: null, isCompleted: null });
+    expect(component.taskForm.value).toEqual({ id: null, title: null, isCompleted: null });
   });
 });
