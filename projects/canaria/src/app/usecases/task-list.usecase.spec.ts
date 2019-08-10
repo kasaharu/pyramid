@@ -10,6 +10,7 @@ import { TaskListUsecase } from './task-list.usecase';
 
 class MockDatabaseAdapter {
   fetchCollection() {}
+  createDocument() {}
 }
 
 describe('TaskListUsecase', () => {
@@ -44,15 +45,15 @@ describe('TaskListUsecase', () => {
     expect(actions).toEqual(expected);
   });
 
-  it('call addTask()', () => {
-    const formedTask: FormedTask = { title: 'test', isCompleted: false };
-    const task: Task = { ...formedTask, id: 1 };
+  it('call addTask()', async () => {
+    const task: Task = { id: '1', title: 'test', isCompleted: false };
+    spyOn(dbAdapter, 'createDocument').and.returnValue(of(task).toPromise());
     const createAction = TaskStoreActions.create(task);
     const expected: Array<any> = [createAction];
 
     const actions: Array<any> = [];
     store$.scannedActions$.pipe(skip(1)).subscribe((action) => actions.push(action));
-    usecase.createTask(formedTask);
+    await usecase.createTask(task);
     expect(actions).toEqual(expected);
   });
 });
