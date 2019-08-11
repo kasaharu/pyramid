@@ -19,7 +19,7 @@ export class TaskListUsecase {
 
   async createTask(task: Task) {
     const createdTask = await this.dbAdapter.createDocument<Task>('tasks', task);
-    this.store$.dispatch(TaskStoreActions.create(createdTask));
+    this.store$.dispatch(TaskStoreActions.createTask(createdTask));
   }
 
   async deleteTask(taskId: string) {

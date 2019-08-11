@@ -49,7 +49,7 @@ describe('TaskListUsecase', () => {
   it('call addTask()', async () => {
     const task: Task = { id: '1', title: 'test', isCompleted: false };
     spyOn(dbAdapter, 'createDocument').and.returnValue(of(task).toPromise());
-    const createAction = TaskStoreActions.create(task);
+    const createAction = TaskStoreActions.createTask(task);
     const expected: Array<any> = [createAction];
 
     const actions: Array<any> = [];

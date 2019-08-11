@@ -14,7 +14,7 @@ describe('TaskStore reducer spec', () => {
 
   it('create action', () => {
     const additionalTask: Task = { id: '1', title: 'test', isCompleted: false };
-    const createAction = Actions.create(additionalTask);
+    const createAction = Actions.createTask(additionalTask);
     const expected: State = { taskList: [additionalTask] };
 
     expect(reducer(initialState, createAction)).toEqual(expected);
