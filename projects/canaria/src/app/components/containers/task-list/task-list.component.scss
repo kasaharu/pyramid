@@ -15,11 +15,15 @@
 }
 
 .item-title {
-  flex-basis: 80%;
+  flex-basis: 70%;
 }
 
 .item-status {
   flex-basis: 15%;
+}
+
+.item-delete-button {
+  flex-basis: 10%;
 }
 
 .is-completed {

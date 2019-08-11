@@ -20,4 +20,9 @@ export class TaskListComponent implements OnInit {
   createTask(task: Task) {
     this.usecase.createTask(task);
   }
+
+  deleteTask(taskId: string) {
+    console.log('[Container] delete task');
+    console.log(taskId);
+  }
 }

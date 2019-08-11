@@ -1,5 +1,5 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TaskItemComponent } from './task-item.component';
 
 describe('TaskItemComponent', () => {
@@ -9,6 +9,7 @@ describe('TaskItemComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TaskItemComponent],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   }));
 
@@ -35,5 +36,11 @@ describe('TaskItemComponent', () => {
       component.task = task;
       expect(component.taskStatusText).toBe('新規');
     });
+  });
+
+  it('call clickDeleteButton()', () => {
+    spyOn(component.requestDeleteTask, 'emit');
+    component.clickDeleteButton('1');
+    expect(component.requestDeleteTask.emit).toHaveBeenCalledWith('1');
   });
 });
