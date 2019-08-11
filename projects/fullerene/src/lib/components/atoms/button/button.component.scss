@@ -11,6 +11,11 @@
     color: #fff;
   }
 
+  &.danger {
+    background-color: #ff3d00;
+    color: #fff;
+  }
+
   &:disabled {
     background-color: #eee;
     color: #9e9e9e;
