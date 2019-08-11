@@ -1,6 +1,6 @@
 <div class="task-item" [class.is-completed]="task.isCompleted">
   <p class="item-blank"></p>
-  <p class="item-title">{{ task.title }}</p>
+  <p class="item-title" title="{{ task.title }}">{{ task.title }}</p>
   <p class="item-status">{{ taskStatusText }}</p>
   <div class="item-update-button">
     <button flButton>更新</button>
