@@ -12,6 +12,9 @@
 
 .item-title {
   flex-basis: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .item-status {
