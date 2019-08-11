@@ -13,6 +13,7 @@ class MockTaskListQuery {
 class MockTaskListUsecase {
   initialize() {}
   createTask() {}
+  deleteTask() {}
 }
 
 describe('TaskListComponent', () => {
@@ -53,5 +54,12 @@ describe('TaskListComponent', () => {
     component.createTask(task);
 
     expect(usecase.createTask).toHaveBeenCalledWith(task);
+  });
+
+  it('call deleteTask()', () => {
+    spyOn(usecase, 'deleteTask');
+    component.deleteTask('1');
+
+    expect(usecase.deleteTask).toHaveBeenCalledWith('1');
   });
 });

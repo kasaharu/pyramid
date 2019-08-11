@@ -18,7 +18,12 @@ export class TaskListUsecase {
   }
 
   async createTask(task: Task) {
-    const createdTask = await this.dbAdapter.createDocument('tasks', task);
+    const createdTask = await this.dbAdapter.createDocument<Task>('tasks', task);
     this.store$.dispatch(TaskStoreActions.create(createdTask));
+  }
+
+  async deleteTask(taskId: string) {
+    const deletedTaskId = await this.dbAdapter.deleteDocument<Task>('tasks', taskId);
+    this.store$.dispatch(TaskStoreActions.deleteTask(deletedTaskId));
   }
 }

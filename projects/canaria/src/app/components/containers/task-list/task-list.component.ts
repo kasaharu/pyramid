@@ -22,7 +22,6 @@ export class TaskListComponent implements OnInit {
   }
 
   deleteTask(taskId: string) {
-    console.log('[Container] delete task');
-    console.log(taskId);
+    this.usecase.deleteTask(taskId);
   }
 }

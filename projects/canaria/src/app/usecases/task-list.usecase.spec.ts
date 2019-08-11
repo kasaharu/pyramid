@@ -11,6 +11,7 @@ import { TaskListUsecase } from './task-list.usecase';
 class MockDatabaseAdapter {
   fetchCollection() {}
   createDocument() {}
+  deleteDocument() {}
 }
 
 describe('TaskListUsecase', () => {
@@ -54,6 +55,18 @@ describe('TaskListUsecase', () => {
     const actions: Array<any> = [];
     store$.scannedActions$.pipe(skip(1)).subscribe((action) => actions.push(action));
     await usecase.createTask(task);
+    expect(actions).toEqual(expected);
+  });
+
+  it('call deleteTask()', async () => {
+    const taskId = '1';
+    spyOn(dbAdapter, 'deleteDocument').and.returnValue(of(taskId).toPromise());
+    const deleteTaskAction = TaskStoreActions.deleteTask(taskId);
+    const expected: Array<any> = [deleteTaskAction];
+
+    const actions: Array<any> = [];
+    store$.scannedActions$.pipe(skip(1)).subscribe((action) => actions.push(action));
+    await usecase.deleteTask(taskId);
     expect(actions).toEqual(expected);
   });
 });
