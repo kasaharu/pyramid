@@ -4,7 +4,7 @@ import { State } from './state';
 
 describe('TaskStore selector spec', () => {
   it('selectTaskList', () => {
-    const taskList: Task[] = [{ id: 1, title: '', isCompleted: false }];
+    const taskList: Task[] = [{ id: '1', title: '', isCompleted: false }];
     const state: State = { taskList };
     expect(selectTaskList.projector(state)).toEqual(taskList);
   });

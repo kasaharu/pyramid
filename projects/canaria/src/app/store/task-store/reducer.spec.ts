@@ -5,7 +5,7 @@ import { initialState, State } from './state';
 
 describe('TaskStore reducer spec', () => {
   it('save action', () => {
-    const additionalTaskList: Task[] = [{ id: 1, title: 'test', isCompleted: false }];
+    const additionalTaskList: Task[] = [{ id: '1', title: 'test', isCompleted: false }];
     const saveAction = Actions.save(additionalTaskList);
     const expected: State = { taskList: additionalTaskList };
 
@@ -13,7 +13,7 @@ describe('TaskStore reducer spec', () => {
   });
 
   it('create action', () => {
-    const additionalTask: Task = { id: 1, title: 'test', isCompleted: false };
+    const additionalTask: Task = { id: '1', title: 'test', isCompleted: false };
     const createAction = Actions.create(additionalTask);
     const expected: State = { taskList: [additionalTask] };
 

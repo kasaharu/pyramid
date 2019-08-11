@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
-import { FormedTask, Task } from '../domain/models';
+import { Task } from '../domain/models';
 import { DatabaseAdapter } from '../infrastructures/database-adapter';
 import { TaskStoreActions } from '../store/task-store';
 
@@ -17,8 +17,8 @@ export class TaskListUsecase {
     this.store$.dispatch(TaskStoreActions.save(taskList));
   }
 
-  createTask(taskWithoutId: FormedTask) {
-    const task: Task = { ...taskWithoutId, id: 1 };
-    this.store$.dispatch(TaskStoreActions.create(task));
+  async createTask(task: Task) {
+    const createdTask = await this.dbAdapter.createDocument('tasks', task);
+    this.store$.dispatch(TaskStoreActions.create(createdTask));
   }
 }

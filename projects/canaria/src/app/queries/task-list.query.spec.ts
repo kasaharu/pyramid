@@ -34,7 +34,7 @@ describe('TaskListQuery', () => {
     });
 
     it('updated', () => {
-      const taskList: Task[] = [{ id: 1, title: 'test', isCompleted: false }];
+      const taskList: Task[] = [{ id: '1', title: 'test', isCompleted: false }];
       const newState = { [TaskStoreSelectors.featureName]: { taskList } };
       store$.setState(newState);
 

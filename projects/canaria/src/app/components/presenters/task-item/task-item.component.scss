@@ -6,12 +6,16 @@
   border-bottom: 1px solid #ccc;
 }
 
-.item-id {
-  flex-basis: 20%;
+.item-blank {
+  flex-basis: 5%;
 }
 
 .item-title {
   flex-basis: 80%;
+}
+
+.item-status {
+  flex-basis: 15%;
 }
 
 .is-completed {

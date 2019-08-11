@@ -1,7 +1,7 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BehaviorSubject } from 'rxjs';
-import { FormedTask, Task } from '../../../domain/models';
+import { Task } from '../../../domain/models';
 import { TaskListQuery } from '../../../queries/task-list.query';
 import { TaskListUsecase } from '../../../usecases/task-list.usecase';
 import { TaskListComponent } from './task-list.component';
@@ -49,9 +49,9 @@ describe('TaskListComponent', () => {
 
   it('call createTask()', () => {
     spyOn(usecase, 'createTask');
-    const formedTask: FormedTask = { title: 'test', isCompleted: false };
-    component.createTask(formedTask);
+    const task: Task = { id: '', title: 'test', isCompleted: false };
+    component.createTask(task);
 
-    expect(usecase.createTask).toHaveBeenCalledWith(formedTask);
+    expect(usecase.createTask).toHaveBeenCalledWith(task);
   });
 });

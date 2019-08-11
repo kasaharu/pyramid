@@ -1,10 +1,5 @@
 export interface Task {
-  id: number;
-  title: string;
-  isCompleted: boolean;
-}
-
-export interface FormedTask {
+  id: string;
   title: string;
   isCompleted: boolean;
 }
