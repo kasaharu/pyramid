@@ -14,7 +14,7 @@ export class TaskListUsecase {
   async initialize() {
     const taskList$ = this.dbAdapter.fetchCollection<Task>('tasks');
     const taskList = await taskList$.pipe(take(1)).toPromise();
-    this.store$.dispatch(TaskStoreActions.save(taskList));
+    this.store$.dispatch(TaskStoreActions.saveTaskList(taskList));
   }
 
   async createTask(task: Task) {

@@ -37,7 +37,7 @@ describe('TaskListUsecase', () => {
     const taskList: Task[] = [{ id: '1', title: 'test', isCompleted: false }];
     spyOn(dbAdapter, 'fetchCollection').and.returnValue(of(taskList));
 
-    const saveAction = TaskStoreActions.save(taskList);
+    const saveAction = TaskStoreActions.saveTaskList(taskList);
     const expected: Array<any> = [saveAction];
 
     const actions: Array<any> = [];
