@@ -43,4 +43,10 @@ describe('TaskItemComponent', () => {
     component.clickDeleteButton('1');
     expect(component.requestDeleteTask.emit).toHaveBeenCalledWith('1');
   });
+
+  it('call check()', () => {
+    spyOn(component.requestCheckTask, 'emit');
+    component.check('1');
+    expect(component.requestCheckTask.emit).toHaveBeenCalledWith('1');
+  });
 });

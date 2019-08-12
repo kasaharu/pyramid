@@ -1,6 +1,6 @@
 <div class="task-item" [class.is-completed]="task.isCompleted">
   <p class="item-blank"></p>
-  <input type="checkbox" class="item-checkbox" />
+  <input type="checkbox" class="item-checkbox" (change)="check(task.id)" />
   <p class="item-title" title="{{ task.title }}">{{ task.title }}</p>
   <p class="item-status">{{ taskStatusText }}</p>
   <div class="item-update-button">

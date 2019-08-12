@@ -12,6 +12,8 @@ export class TaskItemComponent implements OnInit {
   task: Task;
   @Output()
   requestDeleteTask = new EventEmitter<string>();
+  @Output()
+  requestCheckTask = new EventEmitter<string>();
 
   get taskStatusText() {
     return this.task.isCompleted ? '完了' : '新規';
@@ -21,5 +23,9 @@ export class TaskItemComponent implements OnInit {
 
   clickDeleteButton(taskId: string) {
     this.requestDeleteTask.emit(taskId);
+  }
+
+  check(taskId: string) {
+    this.requestCheckTask.emit(taskId);
   }
 }
