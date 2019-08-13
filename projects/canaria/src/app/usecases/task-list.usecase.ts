@@ -22,6 +22,11 @@ export class TaskListUsecase {
     this.store$.dispatch(TaskStoreActions.createTask(createdTask));
   }
 
+  async updateTaskStatus(taskId: string) {
+    console.log('[Usecase] updateTaskStatus');
+    console.log(taskId);
+  }
+
   async deleteTask(taskId: string) {
     const deletedTaskId = await this.dbAdapter.deleteDocument<Task>('tasks', taskId);
     this.store$.dispatch(TaskStoreActions.deleteTask(deletedTaskId));

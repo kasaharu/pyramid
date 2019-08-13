@@ -21,6 +21,10 @@ export class TaskListComponent implements OnInit {
     this.usecase.createTask(task);
   }
 
+  updateTaskStatus(taskId: string) {
+    this.usecase.updateTaskStatus(taskId);
+  }
+
   deleteTask(taskId: string) {
     this.usecase.deleteTask(taskId);
   }

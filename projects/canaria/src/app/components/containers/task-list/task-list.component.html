@@ -10,6 +10,6 @@
   </div>
 
   <ng-container *ngFor="let task of taskList">
-    <app-task-item [task]="task" (requestDeleteTask)="deleteTask($event)"></app-task-item>
+    <app-task-item [task]="task" (requestDeleteTask)="deleteTask($event)" (requestCheckTask)="updateTaskStatus($event)"></app-task-item>
   </ng-container>
 </ng-container>

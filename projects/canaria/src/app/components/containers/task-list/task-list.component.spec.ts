@@ -13,6 +13,7 @@ class MockTaskListQuery {
 class MockTaskListUsecase {
   initialize() {}
   createTask() {}
+  updateTaskStatus() {}
   deleteTask() {}
 }
 
@@ -54,6 +55,14 @@ describe('TaskListComponent', () => {
     component.createTask(task);
 
     expect(usecase.createTask).toHaveBeenCalledWith(task);
+  });
+
+  it('call updateTaskStatus()', () => {
+    spyOn(usecase, 'updateTaskStatus');
+    const taskId = '1';
+    component.updateTaskStatus(taskId);
+
+    expect(usecase.updateTaskStatus).toHaveBeenCalledWith(taskId);
   });
 
   it('call deleteTask()', () => {
