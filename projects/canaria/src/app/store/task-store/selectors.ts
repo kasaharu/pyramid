@@ -8,3 +8,8 @@ export const selectTaskList = createSelector(
   selectFeatureState,
   (state: State) => state.taskList,
 );
+
+export const selectTaskById = createSelector(
+  selectFeatureState,
+  (state: State, props: { id: string }) => state.taskList.find((task) => task.id === props.id),
+);
