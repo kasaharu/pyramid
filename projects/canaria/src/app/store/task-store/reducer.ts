@@ -6,6 +6,7 @@ const taskReducer = createReducer(
   initialState,
   on(Actions.saveTaskList, (state, action) => ({ ...state, taskList: action.payload })),
   on(Actions.createTask, (state, action) => ({ ...state, taskList: [...state.taskList, action.payload] })),
+  on(Actions.updateTask, (state, action) => ({ ...state, taskList: action.payload })),
   on(Actions.deleteTask, (state, action) => ({ ...state, taskList: state.taskList.filter((task) => task.id !== action.payload) })),
 );
 

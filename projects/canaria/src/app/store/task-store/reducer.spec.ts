@@ -20,6 +20,14 @@ describe('TaskStore reducer spec', () => {
     expect(reducer(initialState, createAction)).toEqual(expected);
   });
 
+  it('updateTask action', () => {
+    const additionalTaskList: Task[] = [{ id: '1', title: 'test', isCompleted: false }];
+    const updateAction = Actions.updateTask(additionalTaskList);
+    const expected: State = { taskList: additionalTaskList };
+
+    expect(reducer(initialState, updateAction)).toEqual(expected);
+  });
+
   it('deleteTask action', () => {
     const taskList: Task[] = [{ id: '1', title: 'test1', isCompleted: false }, { id: '2', title: 'test2', isCompleted: false }];
     const state: State = { taskList };
