@@ -25,9 +25,8 @@ export class DatabaseAdapter {
   }
 
   /* istanbul ignore next */
-  async updateDocument<T>(collectionName: string, item: T, itemId: string): Promise<T> {
-    await this.db.doc<T>(`${collectionName}/${itemId}`).update(item);
-    return item;
+  updateDocument<T>(collectionName: string, item: T, itemId: string): Promise<void> {
+    return this.db.doc<T>(`${collectionName}/${itemId}`).update(item);
   }
 
   /* istanbul ignore next */
