@@ -5,12 +5,13 @@ import { of } from 'rxjs';
 import { skip } from 'rxjs/operators';
 import { Task } from '../domain/models';
 import { DatabaseAdapter } from '../infrastructures/database-adapter';
-import { TaskStoreActions } from '../store/task-store';
+import { TaskStoreActions, TaskStoreSelectors } from '../store/task-store';
 import { TaskListUsecase } from './task-list.usecase';
 
 class MockDatabaseAdapter {
   fetchCollection() {}
   createDocument() {}
+  updateDocument() {}
   deleteDocument() {}
 }
 
@@ -21,7 +22,16 @@ describe('TaskListUsecase', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [provideMockStore({ initialState: {} }), { provide: DatabaseAdapter, useClass: MockDatabaseAdapter }],
+      providers: [
+        provideMockStore({
+          initialState: {
+            [TaskStoreSelectors.featureName]: {
+              taskList: [],
+            },
+          },
+        }),
+        { provide: DatabaseAdapter, useClass: MockDatabaseAdapter },
+      ],
     });
 
     usecase = TestBed.get(TaskListUsecase);
@@ -56,6 +66,35 @@ describe('TaskListUsecase', () => {
     store$.scannedActions$.pipe(skip(1)).subscribe((action) => actions.push(action));
     await usecase.createTask(task);
     expect(actions).toEqual(expected);
+  });
+
+  describe('call updateTaskStatus()', async () => {
+    it('選択した ID に一致するタスクがある場合', async () => {
+      const updatedTask: Task = { id: '1', title: 'test', isCompleted: false };
+      const taskList: Task[] = [{ id: '1', title: 'test', isCompleted: false }];
+      store$.setState({ [TaskStoreSelectors.featureName]: { taskList } });
+      spyOn(dbAdapter, 'updateDocument');
+      spyOn(dbAdapter, 'fetchCollection').and.returnValue(of(taskList));
+
+      const updateAction = TaskStoreActions.updateTask(taskList);
+      const expected: Array<any> = [updateAction];
+
+      const actions: Array<any> = [];
+      store$.scannedActions$.pipe(skip(1)).subscribe((action) => actions.push(action));
+      await usecase.updateTaskStatus(updatedTask.id);
+      expect(actions).toEqual(expected);
+    });
+
+    it('選択した ID に一致するタスクがない場合', async () => {
+      const updatedTask: Task = { id: '2', title: 'test', isCompleted: false };
+      const taskList: Task[] = [{ id: '1', title: 'test', isCompleted: false }];
+      store$.setState({ [TaskStoreSelectors.featureName]: { taskList } });
+
+      const actions: Array<any> = [];
+      store$.scannedActions$.pipe(skip(1)).subscribe((action) => actions.push(action));
+      await usecase.updateTaskStatus(updatedTask.id);
+      expect(actions).toEqual([]);
+    });
   });
 
   it('call deleteTask()', async () => {
