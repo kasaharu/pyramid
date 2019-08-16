@@ -1,5 +1,12 @@
 <div class="task-item" [class.is-completed]="task.isCompleted">
   <p class="item-blank"></p>
-  <p class="item-title">{{ task.title }}</p>
+  <input type="checkbox" class="item-checkbox" (change)="check(task.id)" />
+  <p class="item-title" title="{{ task.title }}">{{ task.title }}</p>
   <p class="item-status">{{ taskStatusText }}</p>
+  <div class="item-update-button">
+    <button flButton>更新</button>
+  </div>
+  <div class="item-delete-button">
+    <button flButton [color]="'danger'" (click)="clickDeleteButton(task.id)">削除</button>
+  </div>
 </div>
