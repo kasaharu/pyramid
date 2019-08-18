@@ -6,16 +6,12 @@
   border-bottom: 1px solid #ccc;
 }
 
-.item-blank {
-  flex-basis: 5%;
-}
-
 .item-checkbox {
   flex-basis: 5%;
 }
 
 .item-title {
-  flex-basis: 60%;
+  flex-basis: 65%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
