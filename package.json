@@ -20,11 +20,10 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "yarn lint && lint-staged"
     }
   },
   "lint-staged": {
-    "*.{ts}": "yarn lint",
     "*.{scss}": "yarn stylelint",
     "*.{ts,html,scss}": "yarn prettier:check"
   },
