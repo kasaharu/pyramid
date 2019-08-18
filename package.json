@@ -24,7 +24,9 @@
     }
   },
   "lint-staged": {
-    "*.{ts}": "yarn lint",
+    "projects/canaria/**/*.{ts}": "yarn run tslint -c projects/canaria/tslint.json",
+    "projects/fullerene/**/*.{ts}": "yarn run tslint -c projects/fullerene/tslint.json",
+    "projects/utilities/**/*.{ts}": "yarn run tslint -c projects/utilities/tslint.json",
     "*.{scss}": "yarn stylelint",
     "*.{ts,html,scss}": "yarn prettier:check"
   },
