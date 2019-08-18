@@ -70,13 +70,12 @@ describe('TaskListUsecase', () => {
 
   describe('call updateTaskStatus()', async () => {
     it('選択した ID に一致するタスクがある場合', async () => {
-      const updatedTask: Task = { id: '1', title: 'test', isCompleted: false };
+      const updatedTask: Task = { id: '1', title: 'test', isCompleted: true };
       const taskList: Task[] = [{ id: '1', title: 'test', isCompleted: false }];
       store$.setState({ [TaskStoreSelectors.featureName]: { taskList } });
       spyOn(dbAdapter, 'updateDocument');
-      spyOn(dbAdapter, 'fetchCollection').and.returnValue(of(taskList));
 
-      const updateAction = TaskStoreActions.updateTask(taskList);
+      const updateAction = TaskStoreActions.updateTask(updatedTask);
       const expected: Array<any> = [updateAction];
 
       const actions: Array<any> = [];
