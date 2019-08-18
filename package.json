@@ -24,7 +24,9 @@
     }
   },
   "lint-staged": {
-    "*.{ts}": "yarn lint",
+    "projects/canaria/**/*.{ts}": "yarn run tslint -c projects/canaria/tslint.json",
+    "projects/fullerene/**/*.{ts}": "yarn run tslint -c projects/fullerene/tslint.json",
+    "projects/utilities/**/*.{ts}": "yarn run tslint -c projects/utilities/tslint.json",
     "*.{scss}": "yarn stylelint",
     "*.{ts,html,scss}": "yarn prettier:check"
   },
@@ -42,6 +44,7 @@
     "@ngrx/store": "^8.0.1",
     "@ngrx/store-devtools": "^8.0.1",
     "firebase": "^6.3.1",
+    "immer": "^3.2.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"

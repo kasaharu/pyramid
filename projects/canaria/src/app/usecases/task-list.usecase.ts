@@ -32,11 +32,7 @@ export class TaskListUsecase {
 
     const updatingTask: Task = { ...selectedTask, isCompleted: !selectedTask.isCompleted };
     await this.dbAdapter.updateDocument<Task>('tasks', updatingTask, taskId);
-
-    // TODO: Reducer で immutable に 1 つの item だけ変更するのが難しいので一度全入れ替えするために取得
-    const taskList$ = this.dbAdapter.fetchCollection<Task>('tasks');
-    const taskList = await taskList$.pipe(take(1)).toPromise();
-    this.store$.dispatch(TaskStoreActions.updateTask(taskList));
+    this.store$.dispatch(TaskStoreActions.updateTask(updatingTask));
   }
 
   async deleteTask(taskId: string) {
