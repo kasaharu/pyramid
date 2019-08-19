@@ -5,6 +5,20 @@ import { TaskStoreModule } from './task-store/task-store.module';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, StoreModule.forRoot({}), TaskStoreModule],
+  imports: [
+    CommonModule,
+    StoreModule.forRoot(
+      {},
+      {
+        runtimeChecks: {
+          strictStateImmutability: true,
+          strictActionImmutability: true,
+          strictStateSerializability: true,
+          strictActionSerializability: true,
+        },
+      },
+    ),
+    TaskStoreModule,
+  ],
 })
 export class RootStoreModule {}
