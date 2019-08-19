@@ -11,18 +11,14 @@
 }
 
 .item-title {
-  flex-basis: 65%;
+  flex-basis: 70%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .item-status {
-  flex-basis: 10%;
-}
-
-.item-update-button {
-  flex-basis: 10%;
+  flex-basis: 15%;
 }
 
 .item-delete-button {
