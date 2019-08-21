@@ -6,27 +6,19 @@
   border-bottom: 1px solid #ccc;
 }
 
-.item-blank {
-  flex-basis: 5%;
-}
-
 .item-checkbox {
   flex-basis: 5%;
 }
 
 .item-title {
-  flex-basis: 60%;
+  flex-basis: 70%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .item-status {
-  flex-basis: 10%;
-}
-
-.item-update-button {
-  flex-basis: 10%;
+  flex-basis: 15%;
 }
 
 .item-delete-button {
