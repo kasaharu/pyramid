@@ -18,18 +18,6 @@
     "prettier": "prettier --write './**/*.{ts,html,scss}'",
     "prettier:check": "prettier --check './**/*.{ts,html,scss}'"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "projects/canaria/**/*.{ts}": "yarn run tslint -c projects/canaria/tslint.json",
-    "projects/fullerene/**/*.{ts}": "yarn run tslint -c projects/fullerene/tslint.json",
-    "projects/utilities/**/*.{ts}": "yarn run tslint -c projects/utilities/tslint.json",
-    "*.{scss}": "yarn stylelint",
-    "*.{ts,html,scss}": "yarn prettier:check"
-  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~8.1.0",
