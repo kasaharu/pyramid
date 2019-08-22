@@ -5,6 +5,7 @@ import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { FullereneModule } from 'fullerene';
 import { UtilitiesModule } from 'utilities';
@@ -18,7 +19,6 @@ import { TaskListComponent } from './components/containers/task-list/task-list.c
 import { TaskFormComponent } from './components/presenters/task-form/task-form.component';
 import { TaskItemComponent } from './components/presenters/task-item/task-item.component';
 import { RootStoreModule } from './store/root-store.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, LoginComponent, TasksComponent, TaskListComponent, TaskItemComponent, TaskFormComponent],
