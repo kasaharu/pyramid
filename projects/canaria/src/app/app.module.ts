@@ -18,6 +18,7 @@ import { TaskListComponent } from './components/containers/task-list/task-list.c
 import { TaskFormComponent } from './components/presenters/task-form/task-form.component';
 import { TaskItemComponent } from './components/presenters/task-item/task-item.component';
 import { RootStoreModule } from './store/root-store.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, LoginComponent, TasksComponent, TaskListComponent, TaskItemComponent, TaskFormComponent],
@@ -33,6 +34,7 @@ import { RootStoreModule } from './store/root-store.module';
     RootStoreModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     ReactiveFormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
