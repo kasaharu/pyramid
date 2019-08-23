@@ -1,12 +1,5 @@
-<app-task-form (requestCreateTask)="createTask($event)"></app-task-form>
+<app-task-form class="task-form" (requestCreateTask)="createTask($event)"></app-task-form>
 <ng-container *ngIf="taskList$ | async as taskList">
-  <div class="task-header">
-    <p class="item-checkbox"></p>
-    <p class="item-title">タイトル</p>
-    <p class="item-status">状態</p>
-    <p class="item-delete-button"></p>
-  </div>
-
   <ng-container *ngFor="let task of taskList">
     <app-task-item [task]="task" (requestDeleteTask)="deleteTask($event)" (requestCheckTask)="updateTaskStatus($event)"></app-task-item>
   </ng-container>
