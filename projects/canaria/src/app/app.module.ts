@@ -5,6 +5,7 @@ import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatListModule } from '@angular/material/list';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -30,6 +31,7 @@ import { RootStoreModule } from './store/root-store.module';
     AngularFireAuthGuardModule,
     AngularFirestoreModule,
     MatCheckboxModule,
+    MatListModule,
     UtilitiesModule,
     FullereneModule,
     AppRoutingModule,

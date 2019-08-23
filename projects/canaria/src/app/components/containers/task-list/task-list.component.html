@@ -1,6 +1,6 @@
 <app-task-form class="task-form" (requestCreateTask)="createTask($event)"></app-task-form>
 <ng-container *ngIf="taskList$ | async as taskList">
-  <ng-container *ngFor="let task of taskList">
+  <mat-list *ngFor="let task of taskList">
     <app-task-item [task]="task" (requestDeleteTask)="deleteTask($event)" (requestCheckTask)="updateTaskStatus($event)"></app-task-item>
-  </ng-container>
+  </mat-list>
 </ng-container>
