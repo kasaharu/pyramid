@@ -1,5 +1,5 @@
 <div class="task-item" [class.is-completed]="task.isCompleted">
-  <input type="checkbox" class="item-checkbox" (change)="check(task.id)" />
+  <mat-checkbox class="item-checkbox" [checked]="task.isCompleted" (change)="check(task.id)"></mat-checkbox>
   <p class="item-title" title="{{ task.title }}">{{ task.title }}</p>
   <p class="item-status">{{ taskStatusText }}</p>
   <div class="item-delete-button">
