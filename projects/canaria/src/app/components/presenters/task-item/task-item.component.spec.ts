@@ -38,10 +38,20 @@ describe('TaskItemComponent', () => {
     });
   });
 
-  it('call clickDeleteButton()', () => {
-    spyOn(component.requestDeleteTask, 'emit');
-    component.clickDeleteButton('1');
-    expect(component.requestDeleteTask.emit).toHaveBeenCalledWith('1');
+  describe('call clickDeleteButton()', () => {
+    it('confirm を OK した場合', () => {
+      spyOn(window, 'confirm').and.returnValue(true);
+      spyOn(component.requestDeleteTask, 'emit');
+      component.clickDeleteButton('1');
+      expect(component.requestDeleteTask.emit).toHaveBeenCalledWith('1');
+    });
+
+    it('confirm をキャンセルした場合', () => {
+      spyOn(window, 'confirm').and.returnValue(false);
+      spyOn(component.requestDeleteTask, 'emit');
+      component.clickDeleteButton('1');
+      expect(component.requestDeleteTask.emit).not.toHaveBeenCalled();
+    });
   });
 
   it('call check()', () => {
