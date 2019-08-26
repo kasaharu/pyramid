@@ -4,7 +4,10 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatListModule } from '@angular/material/list';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { FullereneModule } from 'fullerene';
 import { UtilitiesModule } from 'utilities';
@@ -27,12 +30,15 @@ import { RootStoreModule } from './store/root-store.module';
     AngularFireAuthModule,
     AngularFireAuthGuardModule,
     AngularFirestoreModule,
+    MatCheckboxModule,
+    MatListModule,
     UtilitiesModule,
     FullereneModule,
     AppRoutingModule,
     RootStoreModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     ReactiveFormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

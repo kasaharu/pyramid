@@ -22,7 +22,9 @@ export class TaskItemComponent implements OnInit {
   ngOnInit() {}
 
   clickDeleteButton(taskId: string) {
-    this.requestDeleteTask.emit(taskId);
+    if (window.confirm('削除したら戻せません。削除しますか？')) {
+      this.requestDeleteTask.emit(taskId);
+    }
   }
 
   check(taskId: string) {
