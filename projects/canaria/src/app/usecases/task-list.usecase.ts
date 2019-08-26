@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { DatabaseAdapter } from 'utilities';
 import { Task } from '../domain/models';
-import { DatabaseAdapter } from '../infrastructures/database-adapter';
 import { TaskStoreActions, TaskStoreSelectors } from '../store/task-store';
 
 @Injectable({

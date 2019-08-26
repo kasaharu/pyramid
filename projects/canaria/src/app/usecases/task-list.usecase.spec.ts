@@ -3,8 +3,8 @@ import { Store } from '@ngrx/store';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
 import { skip } from 'rxjs/operators';
+import { DatabaseAdapter } from 'utilities';
 import { Task } from '../domain/models';
-import { DatabaseAdapter } from '../infrastructures/database-adapter';
 import { TaskStoreActions, TaskStoreSelectors } from '../store/task-store';
 import { TaskListUsecase } from './task-list.usecase';
 
