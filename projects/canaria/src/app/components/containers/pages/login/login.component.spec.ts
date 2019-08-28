@@ -2,14 +2,16 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { Authenticator } from 'utilities';
-
+import { LoginUsecase } from '../../../../usecases/login.usecase';
 import { LoginComponent } from './login.component';
 
 // NOTE: テスト用のダミーデータ
 //       ref. https://github.com/angular/angularfire2/blob/master/docs/install-and-setup.md
 const firebase = { apiKey: 'dummy', authDomain: '', databaseURL: '', projectId: '', storageBucket: '', messagingSenderId: '' };
 
-class MockAuthenticator {
+class MockAuthenticator {}
+
+class MockLoginUsecase {
   login() {}
   logout() {}
 }
@@ -17,16 +19,16 @@ class MockAuthenticator {
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-  let authenticator: Authenticator;
+  let loginUsecase: LoginUsecase;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [LoginComponent],
       imports: [AngularFireModule.initializeApp(firebase), AngularFireAuthModule],
-      providers: [{ provide: Authenticator, useClass: MockAuthenticator }],
+      providers: [{ provide: Authenticator, useClass: MockAuthenticator }, { provide: LoginUsecase, useClass: MockLoginUsecase }],
     }).compileComponents();
 
-    authenticator = TestBed.get(Authenticator);
+    loginUsecase = TestBed.get(LoginUsecase);
   }));
 
   beforeEach(() => {
@@ -40,18 +42,18 @@ describe('LoginComponent', () => {
   });
 
   it('call login() method', () => {
-    spyOn(authenticator, 'login');
+    spyOn(loginUsecase, 'login');
 
     const app = fixture.debugElement.componentInstance;
     app.login();
-    expect(authenticator.login).toHaveBeenCalled();
+    expect(loginUsecase.login).toHaveBeenCalled();
   });
 
   it('call logout() method', () => {
-    spyOn(authenticator, 'logout');
+    spyOn(loginUsecase, 'logout');
 
     const app = fixture.debugElement.componentInstance;
     app.logout();
-    expect(authenticator.logout).toHaveBeenCalled();
+    expect(loginUsecase.logout).toHaveBeenCalled();
   });
 });
