@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class AppInitializationService {
-
-  constructor() { }
+export class AppInitializationUsecase {
+  constructor() {}
 }
