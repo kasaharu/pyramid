@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { Store, Action } from '@ngrx/store';
+import { Action, Store } from '@ngrx/store';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { skip } from 'rxjs/operators';
 import { CurrentUserStoreActions } from '../store/current-user-store';
