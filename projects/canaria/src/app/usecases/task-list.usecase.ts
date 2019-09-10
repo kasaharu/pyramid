@@ -14,7 +14,12 @@ export class TaskListUsecase {
   constructor(private store$: Store<{}>, private dbAdapter: DatabaseAdapter) {}
 
   async initialize() {
-    const taskList$ = this.dbAdapter.fetchCollection<Task>('tasks');
+    const currentUser$ = this.store$.pipe(select(CurrentUserStoreSelectors.selectCurrentUser));
+    const currentUser = await currentUser$.pipe(take(1)).toPromise();
+    if (!currentUser) {
+      return;
+    }
+    const taskList$ = this.dbAdapter.fetchCollectionWhere<Task>('tasks', { key: 'userId', value: currentUser.uid });
     const taskList = await taskList$.pipe(take(1)).toPromise();
     this.store$.dispatch(TaskStoreActions.saveTaskList(taskList));
   }
