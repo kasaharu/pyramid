@@ -4,12 +4,13 @@ import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
 import { skip } from 'rxjs/operators';
 import { DatabaseAdapter } from 'utilities';
-import { Task } from '../domain/models';
+import { CurrentUser, Task } from '../domain/models';
+import { CurrentUserStoreSelectors } from '../store/current-user-store';
 import { TaskStoreActions, TaskStoreSelectors } from '../store/task-store';
 import { TaskListUsecase } from './task-list.usecase';
 
 class MockDatabaseAdapter {
-  fetchCollection() {}
+  fetchCollectionWhere() {}
   createDocument() {}
   updateDocument() {}
   deleteDocument() {}
@@ -25,6 +26,9 @@ describe('TaskListUsecase', () => {
       providers: [
         provideMockStore({
           initialState: {
+            [CurrentUserStoreSelectors.featureName]: {
+              currentUser: null,
+            },
             [TaskStoreSelectors.featureName]: {
               taskList: [],
             },
@@ -43,29 +47,55 @@ describe('TaskListUsecase', () => {
     expect(usecase).toBeTruthy();
   });
 
-  it('call initialize', async () => {
-    const taskList: Task[] = [{ id: '1', title: 'test', isCompleted: false }];
-    spyOn(dbAdapter, 'fetchCollection').and.returnValue(of(taskList));
+  describe('call initialize', () => {
+    it('currentUser が取得できる場合 action が dispatch される', async () => {
+      const currentUser: CurrentUser = { uid: 'uid1' };
+      store$.setState({ [CurrentUserStoreSelectors.featureName]: { currentUser } });
+      const taskList: Task[] = [{ id: '1', title: 'test', isCompleted: false, userId: 'uid1' }];
+      spyOn(dbAdapter, 'fetchCollectionWhere').and.returnValue(of(taskList));
 
-    const saveAction = TaskStoreActions.saveTaskList(taskList);
-    const expected: Array<any> = [saveAction];
+      const saveAction = TaskStoreActions.saveTaskList(taskList);
+      const expected: Array<any> = [saveAction];
 
-    const actions: Array<any> = [];
-    store$.scannedActions$.pipe(skip(1)).subscribe((action) => actions.push(action));
-    await usecase.initialize();
-    expect(actions).toEqual(expected);
+      const actions: Array<any> = [];
+      store$.scannedActions$.pipe(skip(1)).subscribe((action) => actions.push(action));
+      await usecase.initialize();
+      expect(actions).toEqual(expected);
+    });
+
+    it('currentUser が取得できない場合 action が dispatch されない', async () => {
+      const expected: Array<any> = [];
+      const actions: Array<any> = [];
+      store$.scannedActions$.pipe(skip(1)).subscribe((action) => actions.push(action));
+      await usecase.initialize();
+      expect(actions).toEqual(expected);
+    });
   });
 
-  it('call addTask()', async () => {
-    const task: Task = { id: '1', title: 'test', isCompleted: false };
-    spyOn(dbAdapter, 'createDocument').and.returnValue(of(task).toPromise());
-    const createAction = TaskStoreActions.createTask(task);
-    const expected: Array<any> = [createAction];
+  describe('call createTask()', () => {
+    it('currentUser が取得できる場合 action が dispatch される', async () => {
+      const currentUser: CurrentUser = { uid: 'uid1' };
+      store$.setState({ [CurrentUserStoreSelectors.featureName]: { currentUser } });
+      const task: Task = { id: '1', title: 'test', isCompleted: false };
+      const taskWithUserId = { ...task, userId: 'uid1' };
+      spyOn(dbAdapter, 'createDocument').and.returnValue(of(taskWithUserId).toPromise());
+      const createAction = TaskStoreActions.createTask(taskWithUserId);
+      const expected: Array<any> = [createAction];
+      const actions: Array<any> = [];
+      store$.scannedActions$.pipe(skip(1)).subscribe((action) => actions.push(action));
+      await usecase.createTask(task);
+      expect(actions).toEqual(expected);
+    });
 
-    const actions: Array<any> = [];
-    store$.scannedActions$.pipe(skip(1)).subscribe((action) => actions.push(action));
-    await usecase.createTask(task);
-    expect(actions).toEqual(expected);
+    it('currentUser が取得できない場合 action が dispatch されない', async () => {
+      const task: Task = { id: '1', title: 'test', isCompleted: false };
+      const expected: Array<any> = [];
+      const actions: Array<any> = [];
+      store$.scannedActions$.pipe(skip(1)).subscribe((action) => actions.push(action));
+      await usecase.createTask(task);
+
+      expect(actions).toEqual(expected);
+    });
   });
 
   describe('call updateTaskStatus()', async () => {

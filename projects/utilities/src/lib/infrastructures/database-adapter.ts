@@ -14,6 +14,11 @@ export class DatabaseAdapter {
   }
 
   /* istanbul ignore next */
+  fetchCollectionWhere<T>(collectionName: string, where: { key: string; value: string }): Observable<T[]> {
+    return this.db.collection<T>(collectionName, (ref) => ref.where(where.key, '==', where.value)).valueChanges();
+  }
+
+  /* istanbul ignore next */
   async createDocument<T>(collectionName: string, item: T): Promise<T> {
     const id = this.db.createId();
     const document = { ...item, id } as T;
