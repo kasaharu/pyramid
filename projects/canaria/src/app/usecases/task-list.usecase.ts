@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { DatabaseAdapter } from 'utilities';
 import { Task } from '../domain/models';
+import { CurrentUserStoreSelectors } from '../store/current-user-store';
 import { TaskStoreActions, TaskStoreSelectors } from '../store/task-store';
 
 @Injectable({
@@ -19,7 +20,12 @@ export class TaskListUsecase {
   }
 
   async createTask(task: Task) {
-    const createdTask = await this.dbAdapter.createDocument<Task>('tasks', task);
+    const currentUser$ = this.store$.pipe(select(CurrentUserStoreSelectors.selectCurrentUser));
+    const currentUser = await currentUser$.pipe(take(1)).toPromise();
+    if (!currentUser) {
+      return;
+    }
+    const createdTask = await this.dbAdapter.createDocument<Task>('tasks', { ...task, userId: currentUser.uid });
     this.store$.dispatch(TaskStoreActions.createTask(createdTask));
   }
 
