@@ -1,7 +1,15 @@
 import { createAction, createReducer, on, union } from '@ngrx/store';
 import produce from 'immer';
 import { Task } from '../../domain/models';
-import { initialState, State } from './state';
+
+// NOTE: State
+export interface State {
+  taskList: Task[];
+}
+
+const initialState: State = {
+  taskList: [],
+};
 
 // NOTE: Actions
 export const saveTaskList = createAction('[Task] save', (payload: Task[]) => ({ payload }));
