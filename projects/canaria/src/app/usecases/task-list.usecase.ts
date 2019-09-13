@@ -5,7 +5,13 @@ import { take } from 'rxjs/operators';
 import { DatabaseAdapter } from 'utilities';
 import { Task } from '../domain/models';
 import { CurrentUserStoreSelectors } from '../store/current-user-store';
-import { TaskStoreActions, TaskStoreSelectors } from '../store/task-store';
+import {
+  createTask as TaskStoreActionCreateTask,
+  deleteTask as TaskStoreActionDeleteTask,
+  saveTaskList as TaskStoreActionSaveTaskList,
+  selectTaskById as TaskStoreSelectorSelectTaskById,
+  updateTask as TaskStoreActionUpdateTask,
+} from '../store/task-store';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +27,7 @@ export class TaskListUsecase {
     }
     const taskList$ = this.dbAdapter.fetchCollectionWhere<Task>('tasks', { key: 'userId', value: currentUser.uid });
     const taskList = await taskList$.pipe(take(1)).toPromise();
-    this.store$.dispatch(TaskStoreActions.saveTaskList(taskList));
+    this.store$.dispatch(TaskStoreActionSaveTaskList(taskList));
   }
 
   async createTask(task: Task) {
@@ -31,11 +37,11 @@ export class TaskListUsecase {
       return;
     }
     const createdTask = await this.dbAdapter.createDocument<Task>('tasks', { ...task, userId: currentUser.uid });
-    this.store$.dispatch(TaskStoreActions.createTask(createdTask));
+    this.store$.dispatch(TaskStoreActionCreateTask(createdTask));
   }
 
   async updateTaskStatus(taskId: string) {
-    const selectedTask$: Observable<Task | undefined> = this.store$.pipe(select(TaskStoreSelectors.selectTaskById, { id: taskId }));
+    const selectedTask$: Observable<Task | undefined> = this.store$.pipe(select(TaskStoreSelectorSelectTaskById, { id: taskId }));
     const selectedTask: Task | undefined = await selectedTask$.pipe(take(1)).toPromise();
     if (!selectedTask) {
       return;
@@ -43,11 +49,11 @@ export class TaskListUsecase {
 
     const updatingTask: Task = { ...selectedTask, isCompleted: !selectedTask.isCompleted };
     await this.dbAdapter.updateDocument<Task>('tasks', updatingTask, taskId);
-    this.store$.dispatch(TaskStoreActions.updateTask(updatingTask));
+    this.store$.dispatch(TaskStoreActionUpdateTask(updatingTask));
   }
 
   async deleteTask(taskId: string) {
     const deletedTaskId = await this.dbAdapter.deleteDocument<Task>('tasks', taskId);
-    this.store$.dispatch(TaskStoreActions.deleteTask(deletedTaskId));
+    this.store$.dispatch(TaskStoreActionDeleteTask(deletedTaskId));
   }
 }
