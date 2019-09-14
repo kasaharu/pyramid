@@ -5,7 +5,7 @@ import { of } from 'rxjs';
 import { skip } from 'rxjs/operators';
 import { DatabaseAdapter } from 'utilities';
 import { CurrentUser, Task } from '../domain/models';
-import { CurrentUserStoreSelectors } from '../store/current-user-store';
+import { featureName as CurrentUserStoreFeatureName } from '../store/current-user-store';
 import {
   createTask as TaskStoreActionCreateTask,
   deleteTask as TaskStoreActionDeleteTask,
@@ -32,7 +32,7 @@ describe('TaskListUsecase', () => {
       providers: [
         provideMockStore({
           initialState: {
-            [CurrentUserStoreSelectors.featureName]: {
+            [CurrentUserStoreFeatureName]: {
               currentUser: null,
             },
             [TaskStoreFeatureName]: {
@@ -56,7 +56,7 @@ describe('TaskListUsecase', () => {
   describe('call initialize', () => {
     it('currentUser が取得できる場合 action が dispatch される', async () => {
       const currentUser: CurrentUser = { uid: 'uid1' };
-      store$.setState({ [CurrentUserStoreSelectors.featureName]: { currentUser } });
+      store$.setState({ [CurrentUserStoreFeatureName]: { currentUser } });
       const taskList: Task[] = [{ id: '1', title: 'test', isCompleted: false, userId: 'uid1' }];
       spyOn(dbAdapter, 'fetchCollectionWhere').and.returnValue(of(taskList));
 
@@ -81,7 +81,7 @@ describe('TaskListUsecase', () => {
   describe('call createTask()', () => {
     it('currentUser が取得できる場合 action が dispatch される', async () => {
       const currentUser: CurrentUser = { uid: 'uid1' };
-      store$.setState({ [CurrentUserStoreSelectors.featureName]: { currentUser } });
+      store$.setState({ [CurrentUserStoreFeatureName]: { currentUser } });
       const task: Task = { id: '1', title: 'test', isCompleted: false };
       const taskWithUserId = { ...task, userId: 'uid1' };
       spyOn(dbAdapter, 'createDocument').and.returnValue(of(taskWithUserId).toPromise());

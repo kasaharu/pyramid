@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { Action, Store } from '@ngrx/store';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { skip } from 'rxjs/operators';
-import { CurrentUserStoreActions } from '../store/current-user-store';
+import { saveCurrentUser as CurrentUserStoreActionSaveCurrentUser } from '../store/current-user-store';
 import { AppInitializationUsecase } from './app-initialization.usecase';
 
 describe('AppInitializationUsecase', () => {
@@ -38,7 +38,7 @@ describe('AppInitializationUsecase', () => {
       const uid = 'uid';
       const user = {} as firebase.User;
       user.uid = uid;
-      const saveCurrentUserAction = CurrentUserStoreActions.saveCurrentUser({ uid });
+      const saveCurrentUserAction = CurrentUserStoreActionSaveCurrentUser({ uid });
       const expected = [saveCurrentUserAction];
       const actions: Action[] = [];
 
