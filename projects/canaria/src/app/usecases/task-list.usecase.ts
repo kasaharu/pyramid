@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { DatabaseAdapter } from 'utilities';
 import { Task } from '../domain/models';
-import { selectCurrentUser as CurrentUserStoreSelectorSelectCurrentUser } from '../store/current-user-store';
+import { selectStateFromCurrentUserStore } from '../store/current-user-store';
 import {
   createTask as TaskStoreActionCreateTask,
   deleteTask as TaskStoreActionDeleteTask,
@@ -20,7 +20,7 @@ export class TaskListUsecase {
   constructor(private store$: Store<{}>, private dbAdapter: DatabaseAdapter) {}
 
   async initialize() {
-    const currentUser$ = this.store$.pipe(select(CurrentUserStoreSelectorSelectCurrentUser));
+    const currentUser$ = selectStateFromCurrentUserStore(this.store$, (state) => state.currentUser);
     const currentUser = await currentUser$.pipe(take(1)).toPromise();
     if (!currentUser) {
       return;
@@ -31,7 +31,7 @@ export class TaskListUsecase {
   }
 
   async createTask(task: Task) {
-    const currentUser$ = this.store$.pipe(select(CurrentUserStoreSelectorSelectCurrentUser));
+    const currentUser$ = selectStateFromCurrentUserStore(this.store$, (state) => state.currentUser);
     const currentUser = await currentUser$.pipe(take(1)).toPromise();
     if (!currentUser) {
       return;
