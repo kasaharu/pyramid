@@ -1,5 +1,10 @@
-import * as CurrentUserStoreActions from './actions';
-import * as CurrentUserStoreSelectors from './selectors';
-import * as CurrentUserStoreState from './state';
+import { CurrentUser } from '../../domain/models';
 
-export { CurrentUserStoreActions, CurrentUserStoreSelectors, CurrentUserStoreState };
+// NOTE: State
+export interface State {
+  currentUser: CurrentUser | null;
+}
+
+export const initialState: State = {
+  currentUser: null,
+};
