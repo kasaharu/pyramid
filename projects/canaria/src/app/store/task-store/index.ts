@@ -48,14 +48,7 @@ export function createTaskStoreSelector<T, S>(mappingFunction: (state: T, props?
   );
 }
 
-const selectFeatureState = createFeatureSelector<State>(featureName);
-
-export const selectTaskList = createSelector(
-  selectFeatureState,
-  (state: State) => state.taskList,
-);
-
-export const selectTaskById = createSelector(
-  selectFeatureState,
-  (state: State, props: { id: string }) => state.taskList.find((task) => task.id === props.id),
-);
+export const selectTaskList = createTaskStoreSelector<State, Task[]>((state: State) => state.taskList);
+export const selectTaskById = createTaskStoreSelector<State, Task | undefined>((state: State, props: { id: string }) => {
+  return state.taskList.find((task) => task.id === props.id);
+});
