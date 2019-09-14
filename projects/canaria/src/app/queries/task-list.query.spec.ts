@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { Task } from '../domain/models';
-import { TaskStoreSelectors } from '../store/task-store';
+import { featureName as TaskStoreFeatureName } from '../store/task-store';
 import { TaskListQuery } from './task-list.query';
 
 describe('TaskListQuery', () => {
@@ -14,7 +14,7 @@ describe('TaskListQuery', () => {
       providers: [
         provideMockStore({
           initialState: {
-            [TaskStoreSelectors.featureName]: { taskList: [] },
+            [TaskStoreFeatureName]: { taskList: [] },
           },
         }),
       ],
@@ -35,7 +35,7 @@ describe('TaskListQuery', () => {
 
     it('updated', () => {
       const taskList: Task[] = [{ id: '1', title: 'test', isCompleted: false }];
-      const newState = { [TaskStoreSelectors.featureName]: { taskList } };
+      const newState = { [TaskStoreFeatureName]: { taskList } };
       store$.setState(newState);
 
       query.taskList$.subscribe((value) => expect(value).toEqual(taskList));

@@ -1,12 +1,10 @@
 import { Task } from '../../domain/models';
-import * as Actions from './actions';
-import { reducer } from './reducer';
-import { initialState, State } from './state';
+import reducer, { createTask, deleteTask, initialState, saveTaskList, selectTaskById, selectTaskList, State, updateTask } from './index';
 
 describe('TaskStore reducer spec', () => {
   it('save action', () => {
     const additionalTaskList: Task[] = [{ id: '1', title: 'test', isCompleted: false }];
-    const saveAction = Actions.saveTaskList(additionalTaskList);
+    const saveAction = saveTaskList(additionalTaskList);
     const expected: State = { taskList: additionalTaskList };
 
     expect(reducer(initialState, saveAction)).toEqual(expected);
@@ -14,7 +12,7 @@ describe('TaskStore reducer spec', () => {
 
   it('create action', () => {
     const additionalTask: Task = { id: '1', title: 'test', isCompleted: false };
-    const createAction = Actions.createTask(additionalTask);
+    const createAction = createTask(additionalTask);
     const expected: State = { taskList: [additionalTask] };
 
     expect(reducer(initialState, createAction)).toEqual(expected);
@@ -24,7 +22,7 @@ describe('TaskStore reducer spec', () => {
     const taskList: Task[] = [{ id: '1', title: 'test1', isCompleted: false }, { id: '2', title: 'test2', isCompleted: false }];
     const state: State = { taskList };
     const updatedTask: Task = { id: '1', title: 'test1', isCompleted: true };
-    const updateAction = Actions.updateTask(updatedTask);
+    const updateAction = updateTask(updatedTask);
     const expected: State = { taskList: [{ id: '1', title: 'test1', isCompleted: true }, { id: '2', title: 'test2', isCompleted: false }] };
 
     expect(reducer(state, updateAction)).toEqual(expected);
@@ -33,9 +31,24 @@ describe('TaskStore reducer spec', () => {
   it('deleteTask action', () => {
     const taskList: Task[] = [{ id: '1', title: 'test1', isCompleted: false }, { id: '2', title: 'test2', isCompleted: false }];
     const state: State = { taskList };
-    const deleteAction = Actions.deleteTask('1');
+    const deleteAction = deleteTask('1');
     const expected: State = { taskList: [{ id: '2', title: 'test2', isCompleted: false }] };
 
     expect(reducer(state, deleteAction)).toEqual(expected);
+  });
+});
+
+describe('TaskStore selector spec', () => {
+  it('selectTaskList', () => {
+    const taskList: Task[] = [{ id: '1', title: '', isCompleted: false }];
+    const state: State = { taskList };
+    expect(selectTaskList.projector(state)).toEqual(taskList);
+  });
+
+  it('selectTaskById', () => {
+    const taskList: Task[] = [{ id: '1', title: 'task1', isCompleted: false }, { id: '2', title: 'task2', isCompleted: false }];
+    const taskId = '1';
+    const state: State = { taskList };
+    expect(selectTaskById.projector(state, { id: taskId })).toEqual({ id: '1', title: 'task1', isCompleted: false });
   });
 });

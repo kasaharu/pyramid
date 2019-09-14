@@ -5,8 +5,14 @@ import { of } from 'rxjs';
 import { skip } from 'rxjs/operators';
 import { DatabaseAdapter } from 'utilities';
 import { CurrentUser, Task } from '../domain/models';
-import { CurrentUserStoreSelectors } from '../store/current-user-store';
-import { TaskStoreActions, TaskStoreSelectors } from '../store/task-store';
+import { featureName as CurrentUserStoreFeatureName } from '../store/current-user-store';
+import {
+  createTask as TaskStoreActionCreateTask,
+  deleteTask as TaskStoreActionDeleteTask,
+  featureName as TaskStoreFeatureName,
+  saveTaskList as TaskStoreActionSaveTaskList,
+  updateTask as TaskStoreActionUpdateTask,
+} from '../store/task-store';
 import { TaskListUsecase } from './task-list.usecase';
 
 class MockDatabaseAdapter {
@@ -26,10 +32,10 @@ describe('TaskListUsecase', () => {
       providers: [
         provideMockStore({
           initialState: {
-            [CurrentUserStoreSelectors.featureName]: {
+            [CurrentUserStoreFeatureName]: {
               currentUser: null,
             },
-            [TaskStoreSelectors.featureName]: {
+            [TaskStoreFeatureName]: {
               taskList: [],
             },
           },
@@ -50,11 +56,11 @@ describe('TaskListUsecase', () => {
   describe('call initialize', () => {
     it('currentUser が取得できる場合 action が dispatch される', async () => {
       const currentUser: CurrentUser = { uid: 'uid1' };
-      store$.setState({ [CurrentUserStoreSelectors.featureName]: { currentUser } });
+      store$.setState({ [CurrentUserStoreFeatureName]: { currentUser } });
       const taskList: Task[] = [{ id: '1', title: 'test', isCompleted: false, userId: 'uid1' }];
       spyOn(dbAdapter, 'fetchCollectionWhere').and.returnValue(of(taskList));
 
-      const saveAction = TaskStoreActions.saveTaskList(taskList);
+      const saveAction = TaskStoreActionSaveTaskList(taskList);
       const expected: Array<any> = [saveAction];
 
       const actions: Array<any> = [];
@@ -75,11 +81,11 @@ describe('TaskListUsecase', () => {
   describe('call createTask()', () => {
     it('currentUser が取得できる場合 action が dispatch される', async () => {
       const currentUser: CurrentUser = { uid: 'uid1' };
-      store$.setState({ [CurrentUserStoreSelectors.featureName]: { currentUser } });
+      store$.setState({ [CurrentUserStoreFeatureName]: { currentUser } });
       const task: Task = { id: '1', title: 'test', isCompleted: false };
       const taskWithUserId = { ...task, userId: 'uid1' };
       spyOn(dbAdapter, 'createDocument').and.returnValue(of(taskWithUserId).toPromise());
-      const createAction = TaskStoreActions.createTask(taskWithUserId);
+      const createAction = TaskStoreActionCreateTask(taskWithUserId);
       const expected: Array<any> = [createAction];
       const actions: Array<any> = [];
       store$.scannedActions$.pipe(skip(1)).subscribe((action) => actions.push(action));
@@ -102,10 +108,10 @@ describe('TaskListUsecase', () => {
     it('選択した ID に一致するタスクがある場合', async () => {
       const updatedTask: Task = { id: '1', title: 'test', isCompleted: true };
       const taskList: Task[] = [{ id: '1', title: 'test', isCompleted: false }];
-      store$.setState({ [TaskStoreSelectors.featureName]: { taskList } });
+      store$.setState({ [TaskStoreFeatureName]: { taskList } });
       spyOn(dbAdapter, 'updateDocument');
 
-      const updateAction = TaskStoreActions.updateTask(updatedTask);
+      const updateAction = TaskStoreActionUpdateTask(updatedTask);
       const expected: Array<any> = [updateAction];
 
       const actions: Array<any> = [];
@@ -117,7 +123,7 @@ describe('TaskListUsecase', () => {
     it('選択した ID に一致するタスクがない場合', async () => {
       const updatedTask: Task = { id: '2', title: 'test', isCompleted: false };
       const taskList: Task[] = [{ id: '1', title: 'test', isCompleted: false }];
-      store$.setState({ [TaskStoreSelectors.featureName]: { taskList } });
+      store$.setState({ [TaskStoreFeatureName]: { taskList } });
 
       const actions: Array<any> = [];
       store$.scannedActions$.pipe(skip(1)).subscribe((action) => actions.push(action));
@@ -129,7 +135,7 @@ describe('TaskListUsecase', () => {
   it('call deleteTask()', async () => {
     const taskId = '1';
     spyOn(dbAdapter, 'deleteDocument').and.returnValue(of(taskId).toPromise());
-    const deleteTaskAction = TaskStoreActions.deleteTask(taskId);
+    const deleteTaskAction = TaskStoreActionDeleteTask(taskId);
     const expected: Array<any> = [deleteTaskAction];
 
     const actions: Array<any> = [];

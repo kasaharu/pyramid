@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { CurrentUserStoreActions } from '../store/current-user-store';
+import { saveCurrentUser as CurrentUserStoreActionSaveCurrentUser } from '../store/current-user-store';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +12,6 @@ export class AppInitializationUsecase {
     if (!loggedInUser) {
       return;
     }
-    this.store$.dispatch(CurrentUserStoreActions.saveCurrentUser({ uid: loggedInUser.uid }));
+    this.store$.dispatch(CurrentUserStoreActionSaveCurrentUser({ uid: loggedInUser.uid }));
   }
 }
