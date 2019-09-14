@@ -7,9 +7,9 @@ import { Task } from '../domain/models';
 import { selectCurrentUser as CurrentUserStoreSelectorSelectCurrentUser } from '../store/current-user-store';
 import {
   createTask as TaskStoreActionCreateTask,
-  createTaskStoreSelector,
   deleteTask as TaskStoreActionDeleteTask,
   saveTaskList as TaskStoreActionSaveTaskList,
+  selectStateFromTaskStore,
   updateTask as TaskStoreActionUpdateTask,
 } from '../store/task-store';
 
@@ -41,7 +41,7 @@ export class TaskListUsecase {
   }
 
   async updateTaskStatus(taskId: string) {
-    const selectedTask$: Observable<Task | undefined> = createTaskStoreSelector(this.store$, (state) =>
+    const selectedTask$: Observable<Task | undefined> = selectStateFromTaskStore(this.store$, (state) =>
       state.taskList.find((task) => task.id === taskId),
     );
     const selectedTask: Task | undefined = await selectedTask$.pipe(take(1)).toPromise();

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Task } from '../domain/models';
-import { createTaskStoreSelector } from '../store/task-store';
+import { selectStateFromTaskStore } from '../store/task-store';
 
 @Injectable({
   providedIn: 'root',
@@ -10,5 +10,5 @@ import { createTaskStoreSelector } from '../store/task-store';
 export class TaskListQuery {
   constructor(private store$: Store<{}>) {}
 
-  taskList$: Observable<Task[]> = createTaskStoreSelector(this.store$, (state) => state.taskList);
+  taskList$: Observable<Task[]> = selectStateFromTaskStore(this.store$, (state) => state.taskList);
 }
