@@ -42,7 +42,8 @@ export default function reducer(state: State, action: ActionsUnionType): State {
 
 // NOTE: Selectors
 export const featureName = 'task';
-export const selectTaskList = createFeatureStoreSelector(featureName)<State, Task[]>((state: State) => state.taskList);
-export const selectTaskById = createFeatureStoreSelector(featureName)<State, Task | undefined>((state: State, props: { id: string }) => {
+const createTaskStoreSelector = () => createFeatureStoreSelector(featureName);
+export const selectTaskList = createTaskStoreSelector()<State, Task[]>((state: State) => state.taskList);
+export const selectTaskById = createTaskStoreSelector()<State, Task | undefined>((state: State, props: { id: string }) => {
   return state.taskList.find((task) => task.id === props.id);
 });
