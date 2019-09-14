@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
-import { featureName, reducer } from './index';
+import reducer, { featureName } from './index';
 
 @NgModule({
   declarations: [],

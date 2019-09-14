@@ -1,5 +1,5 @@
 import { CurrentUser } from '../../domain/models';
-import { initialState, reducer, saveCurrentUser, selectCurrentUser, State } from './index';
+import reducer, { initialState, saveCurrentUser, selectCurrentUser, State } from './index';
 
 describe('CurrentUserStore reducer spec', () => {
   it('save action', () => {

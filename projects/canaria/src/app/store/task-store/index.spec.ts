@@ -1,5 +1,5 @@
 import { Task } from '../../domain/models';
-import { createTask, deleteTask, initialState, reducer, saveTaskList, selectTaskById, selectTaskList, State, updateTask } from './index';
+import reducer, { createTask, deleteTask, initialState, saveTaskList, selectTaskById, selectTaskList, State, updateTask } from './index';
 
 describe('TaskStore reducer spec', () => {
   it('save action', () => {

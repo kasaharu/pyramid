@@ -35,7 +35,7 @@ const taskReducer = createReducer(
   on(deleteTask, (state, action) => ({ ...state, taskList: state.taskList.filter((task) => task.id !== action.payload) })),
 );
 
-export function reducer(state: State, action: ActionsUnionType): State {
+export default function reducer(state: State, action: ActionsUnionType): State {
   return taskReducer(state, action);
 }
 

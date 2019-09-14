@@ -19,7 +19,7 @@ export type ActionsUnionType = typeof ActionsUnion;
 // NOTE: Reducer
 const currentUserReducer = createReducer(initialState, on(saveCurrentUser, (state, action) => ({ ...state, currentUser: action.payload })));
 
-export function reducer(state: State, action: ActionsUnionType): State {
+export default function reducer(state: State, action: ActionsUnionType): State {
   return currentUserReducer(state, action);
 }
 
