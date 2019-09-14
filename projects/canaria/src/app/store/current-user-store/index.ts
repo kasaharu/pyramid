@@ -1,4 +1,4 @@
-import { createAction, createReducer, on, union } from '@ngrx/store';
+import { createAction, createFeatureSelector, createReducer, createSelector, on, union } from '@ngrx/store';
 import { CurrentUser } from '../../domain/models';
 
 // NOTE: State
@@ -22,3 +22,12 @@ const currentUserReducer = createReducer(initialState, on(saveCurrentUser, (stat
 export function reducer(state: State, action: ActionsUnionType): State {
   return currentUserReducer(state, action);
 }
+
+// NOTE: Selectors
+export const featureName = 'currentUser';
+const selectFeatureState = createFeatureSelector<State>(featureName);
+
+export const selectCurrentUser = createSelector(
+  selectFeatureState,
+  (state: State) => state.currentUser,
+);
