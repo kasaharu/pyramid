@@ -1,5 +1,5 @@
 import { Task } from '../../domain/models';
-import reducer, { createTask, deleteTask, initialState, saveTaskList, selectTaskById, selectTaskList, State, updateTask } from './index';
+import reducer, { createTask, deleteTask, initialState, saveTaskList, State, updateTask } from './index';
 
 describe('TaskStore reducer spec', () => {
   it('save action', () => {
@@ -35,20 +35,5 @@ describe('TaskStore reducer spec', () => {
     const expected: State = { taskList: [{ id: '2', title: 'test2', isCompleted: false }] };
 
     expect(reducer(state, deleteAction)).toEqual(expected);
-  });
-});
-
-describe('TaskStore selector spec', () => {
-  it('selectTaskList', () => {
-    const taskList: Task[] = [{ id: '1', title: '', isCompleted: false }];
-    const state: State = { taskList };
-    expect(selectTaskList.projector(state)).toEqual(taskList);
-  });
-
-  it('selectTaskById', () => {
-    const taskList: Task[] = [{ id: '1', title: 'task1', isCompleted: false }, { id: '2', title: 'task2', isCompleted: false }];
-    const taskId = '1';
-    const state: State = { taskList };
-    expect(selectTaskById.projector(state, { id: taskId })).toEqual({ id: '1', title: 'task1', isCompleted: false });
   });
 });
