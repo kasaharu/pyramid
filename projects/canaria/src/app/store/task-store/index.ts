@@ -1,6 +1,7 @@
-import { createAction, createFeatureSelector, createReducer, createSelector, on, union } from '@ngrx/store';
+import { createAction, createReducer, on, union } from '@ngrx/store';
 import produce from 'immer';
 import { Task } from '../../domain/models';
+import { createFeatureStoreSelector } from '../helpers/selector-helper';
 
 // NOTE: State
 export interface State {
@@ -41,15 +42,6 @@ export default function reducer(state: State, action: ActionsUnionType): State {
 
 // NOTE: Selectors
 export const featureName = 'task';
-export function createFeatureStoreSelector(name: string) {
-  return <T, S>(mappingFunction: (state: T, props?: any) => S) => {
-    return createSelector(
-      createFeatureSelector<T>(name),
-      mappingFunction,
-    );
-  };
-}
-
 export const selectTaskList = createFeatureStoreSelector(featureName)<State, Task[]>((state: State) => state.taskList);
 export const selectTaskById = createFeatureStoreSelector(featureName)<State, Task | undefined>((state: State, props: { id: string }) => {
   return state.taskList.find((task) => task.id === props.id);
