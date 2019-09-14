@@ -41,7 +41,7 @@ export default function reducer(state: State, action: ActionsUnionType): State {
 
 // NOTE: Selectors
 export const featureName = 'task';
-export function createTaskStoreSelector<T, S>(mappingFunction: (state: T) => S) {
+export function createTaskStoreSelector<T, S>(mappingFunction: (state: T, props?: any) => S) {
   return createSelector(
     createFeatureSelector<T>(featureName),
     mappingFunction,
