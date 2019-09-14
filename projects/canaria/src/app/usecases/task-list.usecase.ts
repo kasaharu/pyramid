@@ -41,8 +41,8 @@ export class TaskListUsecase {
   }
 
   async updateTaskStatus(taskId: string) {
-    const selectedTask$: Observable<Task | undefined> = this.store$.pipe(
-      select(createTaskStoreSelector((state) => state.taskList.find((task) => task.id === taskId))),
+    const selectedTask$: Observable<Task | undefined> = createTaskStoreSelector(this.store$, (state) =>
+      state.taskList.find((task) => task.id === taskId),
     );
     const selectedTask: Task | undefined = await selectedTask$.pipe(take(1)).toPromise();
     if (!selectedTask) {

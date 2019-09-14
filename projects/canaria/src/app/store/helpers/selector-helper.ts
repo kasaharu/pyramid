@@ -1,10 +1,12 @@
-import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { createFeatureSelector, createSelector, Store } from '@ngrx/store';
 
 export function createFeatureStoreSelector<T>(featureName: string) {
-  return <S>(mappingFunction: (state: T, props?: any) => S) => {
-    return createSelector(
-      createFeatureSelector<T>(featureName),
-      mappingFunction,
+  return <S>(store$: Store<{}>, mappingFunction: (state: T, props?: any) => S) => {
+    return store$.select(
+      createSelector(
+        createFeatureSelector<T>(featureName),
+        mappingFunction,
+      ),
     );
   };
 }
