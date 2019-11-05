@@ -10,11 +10,11 @@ export class Authenticator {
   constructor(private afAuth: AngularFireAuth) {}
   loggedInUser$: Observable<firebase.User | null> = this.afAuth.user;
 
-  login() {
-    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+  login(): Promise<auth.UserCredential> {
+    return this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
   }
 
-  logout() {
-    this.afAuth.auth.signOut();
+  logout(): Promise<void> {
+    return this.afAuth.auth.signOut();
   }
 }
