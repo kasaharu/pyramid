@@ -25,6 +25,11 @@
   flex-basis: 10%;
 }
 
+.delete-icon {
+  color: red;
+  cursor: pointer;
+}
+
 .is-completed {
   text-decoration: line-through;
 }
