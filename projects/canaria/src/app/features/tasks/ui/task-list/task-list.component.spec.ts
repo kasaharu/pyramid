@@ -1,9 +1,9 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BehaviorSubject } from 'rxjs';
-import { Task } from '../../../domain/models';
-import { TaskListQuery } from '../../../queries/task-list.query';
-import { TaskListUsecase } from '../../../usecases/task-list.usecase';
+import { Task } from '../../../../domain/models';
+import { TaskListQuery } from '../../../../queries/task-list.query';
+import { TaskListUsecase } from '../../../../usecases/task-list.usecase';
 import { TaskListComponent } from './task-list.component';
 
 class MockTaskListQuery {

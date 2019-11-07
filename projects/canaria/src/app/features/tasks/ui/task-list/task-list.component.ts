@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Task } from '../../../domain/models';
-import { TaskListQuery } from '../../../queries/task-list.query';
-import { TaskListUsecase } from '../../../usecases/task-list.usecase';
+import { Task } from '../../../../domain/models';
+import { TaskListQuery } from '../../../../queries/task-list.query';
+import { TaskListUsecase } from '../../../../usecases/task-list.usecase';
 
 @Component({
   selector: 'app-task-list',
