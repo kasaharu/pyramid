@@ -17,10 +17,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/containers/pages/home/home.component';
 import { LoginComponent } from './components/containers/pages/login/login.component';
-import { TasksComponent } from './components/containers/pages/tasks/tasks.component';
 import { TaskListComponent } from './components/containers/task-list/task-list.component';
 import { TaskFormComponent } from './components/presenters/task-form/task-form.component';
 import { TaskItemComponent } from './components/presenters/task-item/task-item.component';
+import { TasksComponent } from './features/tasks/ui/tasks/tasks.component';
 import { RootStoreModule } from './store/root-store.module';
 
 @NgModule({
