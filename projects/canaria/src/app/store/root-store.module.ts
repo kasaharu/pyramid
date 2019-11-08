@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
-import { default as taskStoreReducer, featureName as taskStoreFeatureName } from '../features/tasks/task-store';
+import { default as taskStoreReducer, featureName as taskStoreFeatureName } from '../features/tasks/store';
 import { CurrentUserStoreModule } from './current-user-store/current-user-store.module';
 
 @NgModule({
