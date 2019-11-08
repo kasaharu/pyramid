@@ -12,7 +12,7 @@ import {
   featureName as TaskStoreFeatureName,
   saveTaskList as TaskStoreActionSaveTaskList,
   updateTask as TaskStoreActionUpdateTask,
-} from '../store/task-store';
+} from '../features/tasks/task-store';
 import { TaskListUsecase } from './task-list.usecase';
 
 class MockDatabaseAdapter {

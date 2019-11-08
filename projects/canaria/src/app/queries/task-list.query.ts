@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Task } from '../domain/models';
-import { selectStateFromTaskStore } from '../store/task-store';
+import { selectStateFromTaskStore } from '../features/tasks/task-store';
 
 @Injectable({
   providedIn: 'root',

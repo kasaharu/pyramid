@@ -11,7 +11,7 @@ import {
   saveTaskList as TaskStoreActionSaveTaskList,
   selectStateFromTaskStore,
   updateTask as TaskStoreActionUpdateTask,
-} from '../store/task-store';
+} from '../features/tasks/task-store';
 
 @Injectable({
   providedIn: 'root',

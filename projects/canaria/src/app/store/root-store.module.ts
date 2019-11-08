@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 import { CurrentUserStoreModule } from './current-user-store/current-user-store.module';
-import { TaskStoreModule } from './task-store/task-store.module';
+import { TaskStoreModule } from '../features/tasks/task-store/task-store.module';
 
 @NgModule({
   declarations: [],

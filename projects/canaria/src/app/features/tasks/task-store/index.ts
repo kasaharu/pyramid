@@ -1,7 +1,7 @@
 import { createAction, createReducer, on, union } from '@ngrx/store';
 import produce from 'immer';
-import { Task } from '../../domain/models';
-import { createFeatureStoreSelector } from '../helpers/selector-helper';
+import { Task } from '../../../domain/models';
+import { createFeatureStoreSelector } from '../../../store/helpers/selector-helper';
 
 // NOTE: State
 export interface State {

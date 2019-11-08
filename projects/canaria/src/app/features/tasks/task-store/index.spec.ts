@@ -1,4 +1,4 @@
-import { Task } from '../../domain/models';
+import { Task } from '../../../domain/models';
 import reducer, { createTask, deleteTask, initialState, saveTaskList, State, updateTask } from './index';
 
 describe('TaskStore reducer spec', () => {
