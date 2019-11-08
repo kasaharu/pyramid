@@ -20,7 +20,6 @@ export const deleteTask = createAction('[Task] delete', (payload: string) => ({ 
 
 export const Actions = { saveTaskList, createTask, updateTask, deleteTask };
 const ActionsUnion = union(Actions);
-type ActionsUnionType = typeof ActionsUnion;
 
 // NOTE: Reducer
 const taskReducer = createReducer(
@@ -36,7 +35,7 @@ const taskReducer = createReducer(
   on(deleteTask, (state, action) => ({ ...state, taskList: state.taskList.filter((task) => task.id !== action.payload) })),
 );
 
-export default function reducer(state: State, action: ActionsUnionType): State {
+export default function reducer(state: State, action: typeof ActionsUnion): State {
   return taskReducer(state, action);
 }
 
