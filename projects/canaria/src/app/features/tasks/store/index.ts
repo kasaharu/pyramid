@@ -13,10 +13,10 @@ export const initialState: State = {
 };
 
 // NOTE: Actions
-export const saveTaskList = createAction('[Task] save', (payload: Task[]) => ({ payload }));
-export const createTask = createAction('[Task] create', (payload: Task) => ({ payload }));
-export const updateTask = createAction('[Task] update', (payload: Task) => ({ payload }));
-export const deleteTask = createAction('[Task] delete', (payload: string) => ({ payload }));
+const saveTaskList = createAction('[Task] save', (payload: Task[]) => ({ payload }));
+const createTask = createAction('[Task] create', (payload: Task) => ({ payload }));
+const updateTask = createAction('[Task] update', (payload: Task) => ({ payload }));
+const deleteTask = createAction('[Task] delete', (payload: string) => ({ payload }));
 
 export const Actions = { saveTaskList, createTask, updateTask, deleteTask };
 const ActionsUnion = union(Actions);

@@ -5,13 +5,7 @@ import { take } from 'rxjs/operators';
 import { DatabaseAdapter } from 'utilities';
 import { Task } from '../../../domain/models';
 import { selectStateFromCurrentUserStore } from '../../../store/current-user-store';
-import {
-  createTask as TaskStoreActionCreateTask,
-  deleteTask as TaskStoreActionDeleteTask,
-  saveTaskList as TaskStoreActionSaveTaskList,
-  selectStateFromTaskStore,
-  updateTask as TaskStoreActionUpdateTask,
-} from '../store';
+import { Actions as TaskStoreActions, selectStateFromTaskStore } from '../store';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +21,7 @@ export class TaskListUsecase {
     }
     const taskList$ = this.dbAdapter.fetchCollectionWhere<Task>('tasks', { key: 'userId', value: currentUser.uid });
     const taskList = await taskList$.pipe(take(1)).toPromise();
-    this.store$.dispatch(TaskStoreActionSaveTaskList(taskList));
+    this.store$.dispatch(TaskStoreActions.saveTaskList(taskList));
   }
 
   async createTask(task: Task) {
@@ -37,7 +31,7 @@ export class TaskListUsecase {
       return;
     }
     const createdTask = await this.dbAdapter.createDocument<Task>('tasks', { ...task, userId: currentUser.uid });
-    this.store$.dispatch(TaskStoreActionCreateTask(createdTask));
+    this.store$.dispatch(TaskStoreActions.createTask(createdTask));
   }
 
   async updateTaskStatus(taskId: string) {
@@ -51,11 +45,11 @@ export class TaskListUsecase {
 
     const updatingTask: Task = { ...selectedTask, isCompleted: !selectedTask.isCompleted };
     await this.dbAdapter.updateDocument<Task>('tasks', updatingTask, taskId);
-    this.store$.dispatch(TaskStoreActionUpdateTask(updatingTask));
+    this.store$.dispatch(TaskStoreActions.updateTask(updatingTask));
   }
 
   async deleteTask(taskId: string) {
     const deletedTaskId = await this.dbAdapter.deleteDocument<Task>('tasks', taskId);
-    this.store$.dispatch(TaskStoreActionDeleteTask(deletedTaskId));
+    this.store$.dispatch(TaskStoreActions.deleteTask(deletedTaskId));
   }
 }
