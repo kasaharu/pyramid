@@ -4,15 +4,15 @@ import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
 import { skip } from 'rxjs/operators';
 import { DatabaseAdapter } from 'utilities';
-import { CurrentUser, Task } from '../domain/models';
-import { featureName as CurrentUserStoreFeatureName } from '../store/current-user-store';
+import { CurrentUser, Task } from '../../../domain/models';
+import { featureName as CurrentUserStoreFeatureName } from '../../../store/current-user-store';
 import {
   createTask as TaskStoreActionCreateTask,
   deleteTask as TaskStoreActionDeleteTask,
   featureName as TaskStoreFeatureName,
   saveTaskList as TaskStoreActionSaveTaskList,
   updateTask as TaskStoreActionUpdateTask,
-} from '../features/tasks/store';
+} from '../store';
 import { TaskListUsecase } from './task-list.usecase';
 
 class MockDatabaseAdapter {

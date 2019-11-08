@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { Task } from '../domain/models';
-import { featureName as TaskStoreFeatureName } from '../features/tasks/store';
+import { Task } from '../../../domain/models';
+import { featureName as TaskStoreFeatureName } from '../store';
 import { TaskListQuery } from './task-list.query';
 
 describe('TaskListQuery', () => {

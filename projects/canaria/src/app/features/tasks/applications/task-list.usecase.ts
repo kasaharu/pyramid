@@ -3,15 +3,15 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { DatabaseAdapter } from 'utilities';
-import { Task } from '../domain/models';
-import { selectStateFromCurrentUserStore } from '../store/current-user-store';
+import { Task } from '../../../domain/models';
+import { selectStateFromCurrentUserStore } from '../../../store/current-user-store';
 import {
   createTask as TaskStoreActionCreateTask,
   deleteTask as TaskStoreActionDeleteTask,
   saveTaskList as TaskStoreActionSaveTaskList,
   selectStateFromTaskStore,
   updateTask as TaskStoreActionUpdateTask,
-} from '../features/tasks/store';
+} from '../store';
 
 @Injectable({
   providedIn: 'root',
