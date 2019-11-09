@@ -3,10 +3,6 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -18,29 +14,21 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/containers/pages/home/home.component';
 import { LoginComponent } from './components/containers/pages/login/login.component';
 import { TasksModule } from './features/tasks/tasks.module';
-import { TaskFormComponent } from './features/tasks/ui/task-form/task-form.component';
-import { TaskItemComponent } from './features/tasks/ui/task-item/task-item.component';
-import { TaskListComponent } from './features/tasks/ui/task-list/task-list.component';
-import { TasksComponent } from './features/tasks/ui/tasks/tasks.component';
 import { RootStoreModule } from './store/root-store.module';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, LoginComponent, TasksComponent, TaskListComponent, TaskItemComponent, TaskFormComponent],
+  declarations: [AppComponent, HomeComponent, LoginComponent],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireAuthGuardModule,
     AngularFirestoreModule,
-    MatCheckboxModule,
-    MatIconModule,
-    MatListModule,
     UtilitiesModule,
     FullereneModule,
     AppRoutingModule,
     RootStoreModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    ReactiveFormsModule,
     BrowserAnimationsModule,
     TasksModule,
   ],
