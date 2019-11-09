@@ -3,7 +3,7 @@ import { canActivate, redirectLoggedInTo, redirectUnauthorizedTo } from '@angula
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/containers/pages/home/home.component';
 import { LoginComponent } from './components/containers/pages/login/login.component';
-import { TasksComponent } from './components/containers/pages/tasks/tasks.component';
+import { TasksComponent } from './features/task/ui/tasks/tasks.component';
 
 const redirectLoggedInToHome = redirectLoggedInTo(['home']);
 const redirectUnauthorizedToLogin = redirectUnauthorizedTo(['login']);

@@ -1,11 +1,12 @@
 :host {
   display: flex;
-  background-color: #7c4dff;
-  height: 40px;
+  background-color: #222;
+  height: 48px;
   align-items: center;
 }
 
 .app-title {
+  color: #f0f0f0;
   margin-left: 24px;
   width: 60px;
 }

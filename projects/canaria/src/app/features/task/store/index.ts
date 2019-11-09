@@ -1,7 +1,7 @@
 import { createAction, createReducer, on, union } from '@ngrx/store';
 import produce from 'immer';
-import { Task } from '../../domain/models';
-import { createFeatureStoreSelector } from '../helpers/selector-helper';
+import { Task } from '../../../domain/models';
+import { createFeatureStoreSelector } from '../../../store/helpers/selector-helper';
 
 // NOTE: State
 export interface State {
@@ -13,14 +13,13 @@ export const initialState: State = {
 };
 
 // NOTE: Actions
-export const saveTaskList = createAction('[Task] save', (payload: Task[]) => ({ payload }));
-export const createTask = createAction('[Task] create', (payload: Task) => ({ payload }));
-export const updateTask = createAction('[Task] update', (payload: Task) => ({ payload }));
-export const deleteTask = createAction('[Task] delete', (payload: string) => ({ payload }));
+const saveTaskList = createAction('[Task] save', (payload: Task[]) => ({ payload }));
+const createTask = createAction('[Task] create', (payload: Task) => ({ payload }));
+const updateTask = createAction('[Task] update', (payload: Task) => ({ payload }));
+const deleteTask = createAction('[Task] delete', (payload: string) => ({ payload }));
 
 export const Actions = { saveTaskList, createTask, updateTask, deleteTask };
 const ActionsUnion = union(Actions);
-type ActionsUnionType = typeof ActionsUnion;
 
 // NOTE: Reducer
 const taskReducer = createReducer(
@@ -36,7 +35,7 @@ const taskReducer = createReducer(
   on(deleteTask, (state, action) => ({ ...state, taskList: state.taskList.filter((task) => task.id !== action.payload) })),
 );
 
-export default function reducer(state: State, action: ActionsUnionType): State {
+export default function reducer(state: State, action: typeof ActionsUnion): State {
   return taskReducer(state, action);
 }
 
