@@ -17,6 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/containers/pages/home/home.component';
 import { LoginComponent } from './components/containers/pages/login/login.component';
+import { TasksModule } from './features/tasks/tasks.module';
 import { TaskFormComponent } from './features/tasks/ui/task-form/task-form.component';
 import { TaskItemComponent } from './features/tasks/ui/task-item/task-item.component';
 import { TaskListComponent } from './features/tasks/ui/task-list/task-list.component';
@@ -41,6 +42,7 @@ import { RootStoreModule } from './store/root-store.module';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    TasksModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
