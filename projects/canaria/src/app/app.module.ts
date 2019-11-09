@@ -13,7 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/containers/pages/home/home.component';
 import { LoginComponent } from './components/containers/pages/login/login.component';
-import { TasksModule } from './features/tasks/tasks.module';
+import { TaskModule } from './features/task/task.module';
 import { RootStoreModule } from './store/root-store.module';
 
 @NgModule({
@@ -30,7 +30,7 @@ import { RootStoreModule } from './store/root-store.module';
     RootStoreModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     BrowserAnimationsModule,
-    TasksModule,
+    TaskModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

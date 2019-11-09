@@ -14,4 +14,4 @@ import { TasksComponent } from './ui/tasks/tasks.component';
   declarations: [TasksComponent, TaskListComponent, TaskItemComponent, TaskFormComponent],
   imports: [CommonModule, ReactiveFormsModule, MatCheckboxModule, MatIconModule, MatListModule, FullereneModule],
 })
-export class TasksModule {}
+export class TaskModule {}
