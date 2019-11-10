@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Task } from '../../../../domain/models';
@@ -12,6 +13,8 @@ import { TaskListUsecase } from '../../applications/task-list.usecase';
 export class TaskListComponent implements OnInit {
   constructor(private query: TaskListQuery, private usecase: TaskListUsecase) {}
   taskList$: Observable<Task[]> = this.query.taskList$;
+  todoList$: Observable<Task[]> = this.query.todoList$;
+  doneList$: Observable<Task[]> = this.query.doneList$;
 
   ngOnInit() {
     this.usecase.initialize();
@@ -27,5 +30,15 @@ export class TaskListComponent implements OnInit {
 
   deleteTask(taskId: string) {
     this.usecase.deleteTask(taskId);
+  }
+
+  // TODO: Cdk が必要とするメソッドをテストするすべがあるか？
+  /* istanbul ignore next */
+  drop(event: CdkDragDrop<Task[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+    }
   }
 }

@@ -1,3 +1,4 @@
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BehaviorSubject } from 'rxjs';
@@ -24,6 +25,7 @@ describe('TaskListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [DragDropModule],
       declarations: [TaskListComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [{ provide: TaskListUsecase, useClass: MockTaskListUsecase }, { provide: TaskListQuery, useClass: MockTaskListQuery }],

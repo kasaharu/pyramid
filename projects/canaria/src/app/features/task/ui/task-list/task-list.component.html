@@ -1,6 +1,32 @@
 <app-task-form class="task-form" (requestCreateTask)="createTask($event)"></app-task-form>
-<ng-container *ngIf="taskList$ | async as taskList">
-  <mat-list *ngFor="let task of taskList">
-    <app-task-item [task]="task" (requestDeleteTask)="deleteTask($event)" (requestCheckTask)="updateTaskStatus($event)"></app-task-item>
-  </mat-list>
-</ng-container>
+<div class="container">
+  <h3>新規</h3>
+  <div
+    cdkDropList
+    #todoList="cdkDropList"
+    [cdkDropListData]="todoList$ | async"
+    [cdkDropListConnectedTo]="[doneList]"
+    class="drop-section"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <div class="draggable-item" *ngFor="let item of todoList$ | async" cdkDrag>
+      <app-task-item [task]="item" (requestDeleteTask)="deleteTask($event)" (requestCheckTask)="updateTaskStatus($event)"></app-task-item>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <h3>完了</h3>
+  <div
+    cdkDropList
+    #doneList="cdkDropList"
+    [cdkDropListData]="doneList$ | async"
+    [cdkDropListConnectedTo]="[todoList]"
+    class="drop-section"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <div class="draggable-item" *ngFor="let item of doneList$ | async" cdkDrag>
+      <app-task-item [task]="item" (requestDeleteTask)="deleteTask($event)" (requestCheckTask)="updateTaskStatus($event)"></app-task-item>
+    </div>
+  </div>
+</div>
