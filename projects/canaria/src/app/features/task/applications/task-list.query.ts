@@ -11,4 +11,16 @@ export class TaskListQuery {
   constructor(private store$: Store<{}>) {}
 
   taskList$: Observable<Task[]> = selectStateFromTaskStore(this.store$, (state) => state.taskList);
+  todoList$: Observable<Task[]> = selectStateFromTaskStore(this.store$, (state) => {
+    if (state.taskList.length) {
+      return state.taskList.filter((task) => !task.isCompleted);
+    }
+    return state.taskList;
+  });
+  doneList$: Observable<Task[]> = selectStateFromTaskStore(this.store$, (state) => {
+    if (state.taskList.length) {
+      return state.taskList.filter((task) => task.isCompleted);
+    }
+    return state.taskList;
+  });
 }

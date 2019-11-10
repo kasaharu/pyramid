@@ -41,4 +41,34 @@ describe('TaskListQuery', () => {
       query.taskList$.subscribe((value) => expect(value).toEqual(taskList));
     });
   });
+
+  describe('todoList$', () => {
+    it('default', () => {
+      query.todoList$.subscribe((value) => expect(value).toEqual([]));
+    });
+
+    it('updated', () => {
+      const taskList: Task[] = [{ id: '1', title: 'test1', isCompleted: false }, { id: '2', title: 'test2', isCompleted: true }];
+      const newState = { [TaskStoreFeatureName]: { taskList } };
+      const expected: Task[] = [{ id: '1', title: 'test1', isCompleted: false }];
+      store$.setState(newState);
+
+      query.todoList$.subscribe((value) => expect(value).toEqual(expected));
+    });
+  });
+
+  describe('doneList$', () => {
+    it('default', () => {
+      query.doneList$.subscribe((value) => expect(value).toEqual([]));
+    });
+
+    it('updated', () => {
+      const taskList: Task[] = [{ id: '1', title: 'test1', isCompleted: false }, { id: '2', title: 'test2', isCompleted: true }];
+      const newState = { [TaskStoreFeatureName]: { taskList } };
+      const expected: Task[] = [{ id: '2', title: 'test2', isCompleted: true }];
+      store$.setState(newState);
+
+      query.doneList$.subscribe((value) => expect(value).toEqual(expected));
+    });
+  });
 });
