@@ -53,7 +53,7 @@ describe('TaskListComponent', () => {
 
   it('call createTask()', () => {
     spyOn(usecase, 'createTask');
-    const task: Task = { id: '', title: 'test', isCompleted: false };
+    const task: Task = { id: '', title: 'test', isCompleted: false, orderId: 0 };
     component.createTask(task);
 
     expect(usecase.createTask).toHaveBeenCalledWith(task);

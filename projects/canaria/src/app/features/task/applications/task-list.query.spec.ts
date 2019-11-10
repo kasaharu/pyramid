@@ -34,7 +34,7 @@ describe('TaskListQuery', () => {
     });
 
     it('updated', () => {
-      const taskList: Task[] = [{ id: '1', title: 'test', isCompleted: false }];
+      const taskList: Task[] = [{ id: '1', title: 'test', isCompleted: false, orderId: 0 }];
       const newState = { [TaskStoreFeatureName]: { taskList } };
       store$.setState(newState);
 
@@ -48,9 +48,12 @@ describe('TaskListQuery', () => {
     });
 
     it('updated', () => {
-      const taskList: Task[] = [{ id: '1', title: 'test1', isCompleted: false }, { id: '2', title: 'test2', isCompleted: true }];
+      const taskList: Task[] = [
+        { id: '1', title: 'test1', isCompleted: false, orderId: 0 },
+        { id: '2', title: 'test2', isCompleted: true, orderId: 1 },
+      ];
       const newState = { [TaskStoreFeatureName]: { taskList } };
-      const expected: Task[] = [{ id: '1', title: 'test1', isCompleted: false }];
+      const expected: Task[] = [{ id: '1', title: 'test1', isCompleted: false, orderId: 0 }];
       store$.setState(newState);
 
       query.todoList$.subscribe((value) => expect(value).toEqual(expected));
@@ -63,9 +66,12 @@ describe('TaskListQuery', () => {
     });
 
     it('updated', () => {
-      const taskList: Task[] = [{ id: '1', title: 'test1', isCompleted: false }, { id: '2', title: 'test2', isCompleted: true }];
+      const taskList: Task[] = [
+        { id: '1', title: 'test1', isCompleted: false, orderId: 0 },
+        { id: '2', title: 'test2', isCompleted: true, orderId: 1 },
+      ];
       const newState = { [TaskStoreFeatureName]: { taskList } };
-      const expected: Task[] = [{ id: '2', title: 'test2', isCompleted: true }];
+      const expected: Task[] = [{ id: '2', title: 'test2', isCompleted: true, orderId: 1 }];
       store$.setState(newState);
 
       query.doneList$.subscribe((value) => expect(value).toEqual(expected));

@@ -51,7 +51,7 @@ describe('TaskListUsecase', () => {
     it('currentUser が取得できる場合 action が dispatch される', async () => {
       const currentUser: CurrentUser = { uid: 'uid1' };
       store$.setState({ [CurrentUserStoreFeatureName]: { currentUser } });
-      const taskList: Task[] = [{ id: '1', title: 'test', isCompleted: false, userId: 'uid1' }];
+      const taskList: Task[] = [{ id: '1', title: 'test', isCompleted: false, userId: 'uid1', orderId: 0 }];
       spyOn(dbAdapter, 'fetchCollectionWhere').and.returnValue(of(taskList));
 
       const saveAction = TaskStoreActions.saveTaskList(taskList);
@@ -76,7 +76,7 @@ describe('TaskListUsecase', () => {
     it('currentUser が取得できる場合 action が dispatch される', async () => {
       const currentUser: CurrentUser = { uid: 'uid1' };
       store$.setState({ [CurrentUserStoreFeatureName]: { currentUser } });
-      const task: Task = { id: '1', title: 'test', isCompleted: false };
+      const task: Task = { id: '1', title: 'test', isCompleted: false, orderId: 0 };
       const taskWithUserId = { ...task, userId: 'uid1' };
       spyOn(dbAdapter, 'createDocument').and.returnValue(of(taskWithUserId).toPromise());
       const createAction = TaskStoreActions.createTask(taskWithUserId);
@@ -88,7 +88,7 @@ describe('TaskListUsecase', () => {
     });
 
     it('currentUser が取得できない場合 action が dispatch されない', async () => {
-      const task: Task = { id: '1', title: 'test', isCompleted: false };
+      const task: Task = { id: '1', title: 'test', isCompleted: false, orderId: 0 };
       const expected: Array<any> = [];
       const actions: Array<any> = [];
       store$.scannedActions$.pipe(skip(1)).subscribe((action) => actions.push(action));
@@ -100,8 +100,8 @@ describe('TaskListUsecase', () => {
 
   describe('call updateTaskStatus()', async () => {
     it('選択した ID に一致するタスクがある場合', async () => {
-      const updatedTask: Task = { id: '1', title: 'test', isCompleted: true };
-      const taskList: Task[] = [{ id: '1', title: 'test', isCompleted: false }];
+      const updatedTask: Task = { id: '1', title: 'test', isCompleted: true, orderId: 0 };
+      const taskList: Task[] = [{ id: '1', title: 'test', isCompleted: false, orderId: 0 }];
       store$.setState({ [TaskStoreFeatureName]: { taskList } });
       spyOn(dbAdapter, 'updateDocument');
 
@@ -115,8 +115,8 @@ describe('TaskListUsecase', () => {
     });
 
     it('選択した ID に一致するタスクがない場合', async () => {
-      const updatedTask: Task = { id: '2', title: 'test', isCompleted: false };
-      const taskList: Task[] = [{ id: '1', title: 'test', isCompleted: false }];
+      const updatedTask: Task = { id: '2', title: 'test', isCompleted: false, orderId: 0 };
+      const taskList: Task[] = [{ id: '1', title: 'test', isCompleted: false, orderId: 0 }];
       store$.setState({ [TaskStoreFeatureName]: { taskList } });
 
       const actions: Array<any> = [];
