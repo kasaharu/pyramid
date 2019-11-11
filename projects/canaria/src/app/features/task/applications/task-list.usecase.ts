@@ -30,7 +30,13 @@ export class TaskListUsecase {
     if (!currentUser) {
       return;
     }
-    const createdTask = await this.dbAdapter.createDocument<Task>('tasks', { ...task, userId: currentUser.uid });
+    const taskList$ = selectStateFromTaskStore(this.store$, (state) => state.taskList);
+    const taskList = await taskList$.pipe(take(1)).toPromise();
+    const createdTask = await this.dbAdapter.createDocument<Task>('tasks', {
+      ...task,
+      userId: currentUser.uid,
+      orderId: taskList.length + 1,
+    });
     this.store$.dispatch(TaskStoreActions.createTask(createdTask));
   }
 

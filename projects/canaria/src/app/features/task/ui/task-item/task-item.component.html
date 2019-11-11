@@ -1,10 +1,8 @@
-<mat-list-item>
-  <div class="task-item" [class.is-completed]="task.isCompleted">
-    <mat-checkbox class="item-checkbox" [checked]="task.isCompleted" (change)="check(task.id)"></mat-checkbox>
-    <p class="item-status">{{ taskStatusText }}</p>
-    <p class="item-title" title="{{ task.title }}">{{ task.title }}</p>
-    <div class="item-delete-button">
-      <mat-icon class="delete-icon" (click)="clickDeleteButton(task.id)">delete</mat-icon>
-    </div>
+<div class="task-item" [class.is-completed]="task.isCompleted">
+  <mat-checkbox class="item-checkbox" [checked]="task.isCompleted" (change)="check(task.id)"></mat-checkbox>
+  <p class="item-status">{{ taskStatusText }}</p>
+  <p class="item-title" title="{{ task.title }}">{{ task.title }}</p>
+  <div class="item-delete-button">
+    <mat-icon class="delete-icon" (click)="clickDeleteButton(task.id)">delete</mat-icon>
   </div>
-</mat-list-item>
+</div>
