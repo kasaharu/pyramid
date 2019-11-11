@@ -75,7 +75,8 @@ describe('TaskListUsecase', () => {
   describe('call createTask()', () => {
     it('currentUser が取得できる場合 action が dispatch される', async () => {
       const currentUser: CurrentUser = { uid: 'uid1' };
-      store$.setState({ [CurrentUserStoreFeatureName]: { currentUser } });
+      const taskList: Task[] = [];
+      store$.setState({ [CurrentUserStoreFeatureName]: { currentUser }, [TaskStoreFeatureName]: { taskList } });
       const task: Task = { id: '1', title: 'test', isCompleted: false, orderId: 0 };
       const taskWithUserId = { ...task, userId: 'uid1' };
       spyOn(dbAdapter, 'createDocument').and.returnValue(of(taskWithUserId).toPromise());
