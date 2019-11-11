@@ -12,7 +12,7 @@ export class TaskFormComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
   @Output()
   requestCreateTask = new EventEmitter<Task>();
-  readonly placeholderText = 'task のタイトルを入力';
+  readonly placeholderText = 'タスクを追加';
 
   taskForm = this.fb.group({
     id: [''],
