@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Task } from '../../../../domain/models';
+import { TaskListUsecase } from '../../applications/task-list.usecase';
 
 @Component({
   selector: 'app-tasks',
@@ -6,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tasks.component.scss'],
 })
 export class TasksComponent implements OnInit {
-  constructor() {}
+  constructor(private usecase: TaskListUsecase) {}
 
   ngOnInit() {}
+
+  createTask(task: Task) {
+    this.usecase.createTask(task);
+  }
 }

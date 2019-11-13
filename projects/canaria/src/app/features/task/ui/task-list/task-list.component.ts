@@ -20,10 +20,6 @@ export class TaskListComponent implements OnInit {
     this.usecase.initialize();
   }
 
-  createTask(task: Task) {
-    this.usecase.createTask(task);
-  }
-
   updateTaskStatus(taskId: string) {
     this.usecase.updateTaskStatus(taskId);
   }
